@@ -224,11 +224,49 @@
       color: var(--body-text);
     }
 
-    /* ── WHITE SECTION (3D / 영상 플레이스홀더) ── */
-    .white-section {
+    /* ── 3D VIEWER ── */
+    .viewer-3d {
+      position: relative;
       width: 1920px;
       height: 1045px;
       background: white;
+      overflow: hidden;
+      cursor: grab;
+    }
+    .viewer-3d:active { cursor: grabbing; }
+    .viewer-3d canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .viewer-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 24px;
+      letter-spacing: -0.5px;
+      color: #aaa;
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity 0.6s ease;
+    }
+    .viewer-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: -0.3px;
+      color: #bbb;
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity 0.6s ease;
     }
 
     /* ── PRODUCT GOAL SECTION ── */
@@ -452,8 +490,11 @@
     </div>
   </section>
 
-  <!-- 화이트 섹션 (3D / 폼팩터 플레이스홀더) -->
-  <div class="white-section"></div>
+  <!-- 3D 뷰어 -->
+  <div class="viewer-3d" id="viewer-3d">
+    <div class="viewer-loading" id="viewer-loading">Loading 3D Model...</div>
+    <div class="viewer-hint" id="viewer-hint">드래그하여 360° 회전</div>
+  </div>
 
   <!-- 프로덕트 골 -->
   <section class="product-goal-section reveal">
@@ -489,6 +530,135 @@
   <section class="ergonomic-section reveal">
     <h2 class="ergonomic-heading">아이의 입장을 고려한<br>인체공학적 디자인</h2>
   </section>
+
+  <!-- Three.js importmap -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <!-- 3D 뷰어 -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const container   = document.getElementById('viewer-3d');
+    const loadingEl   = document.getElementById('viewer-loading');
+    const hintEl      = document.getElementById('viewer-hint');
+    const W = 1920, H = 1045;
+
+    /* Renderer */
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(renderer.domElement);
+
+    /* Scene */
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff);
+
+    /* Camera */
+    const camera = new THREE.PerspectiveCamera(40, W / H, 0.01, 1000);
+
+    /* Lights */
+    scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+
+    const key = new THREE.DirectionalLight(0xffffff, 2.5);
+    key.position.set(4, 8, 6);
+    key.castShadow = true;
+    scene.add(key);
+
+    const fill = new THREE.DirectionalLight(0xd0e8ff, 1.2);
+    fill.position.set(-6, 2, -4);
+    scene.add(fill);
+
+    const rim = new THREE.DirectionalLight(0xfff0e0, 0.8);
+    rim.position.set(0, -4, -6);
+    scene.add(rim);
+
+    /* Controls */
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.2;
+    controls.enableZoom = true;
+    controls.enablePan = false;
+    controls.minPolarAngle = Math.PI * 0.15;
+    controls.maxPolarAngle = Math.PI * 0.82;
+
+    /* 마우스 드래그 시 자동 회전 중지, hint 숨김 */
+    renderer.domElement.addEventListener('pointerdown', () => {
+      controls.autoRotate = false;
+      hintEl.style.opacity = '0';
+    });
+
+    /* Load GLB */
+    const loader = new GLTFLoader();
+    loader.load(
+      'assets/3d/gromi.glb',
+      (gltf) => {
+        const model = gltf.scene;
+
+        /* 모델 중앙 정렬 + 자동 스케일 */
+        const box    = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        const size   = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale  = 2.4 / maxDim;
+
+        model.position.sub(center.multiplyScalar(scale));
+        model.scale.setScalar(scale);
+
+        /* 그림자 */
+        model.traverse(child => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+          }
+        });
+
+        scene.add(model);
+
+        /* 카메라 위치: 모델 크기 기반 */
+        const dist = maxDim * scale * 2.2;
+        camera.position.set(0, size.y * scale * 0.15, dist);
+        controls.target.set(0, 0, 0);
+        controls.update();
+
+        /* 로딩 완료 */
+        loadingEl.style.opacity = '0';
+      },
+      (progress) => {
+        if (progress.total > 0) {
+          const pct = Math.round(progress.loaded / progress.total * 100);
+          loadingEl.textContent = `Loading... ${pct}%`;
+        }
+      },
+      (err) => {
+        console.error('GLB load error:', err);
+        loadingEl.textContent = '3D 모델을 불러올 수 없습니다.';
+      }
+    );
+
+    /* Animation loop */
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
 
   <script>
     /* ── 반응형 zoom ── */
