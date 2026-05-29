@@ -23,6 +23,12 @@
       font-weight: 500;
       font-style: normal;
     }
+    @font-face {
+      font-family: 'Aeonik';
+      src: url('fonts/aeoniktrial-regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
 
     html { overflow-x: hidden; }
 
@@ -221,27 +227,39 @@
     }
     .product-card:hover::after { opacity: 1; }
 
-    .product-card-label {
+    /* 피그마 product-page-thumbnail-hover: 100px padding, 32px gap, 좌하단 */
+    .product-card-info {
       position: absolute;
       bottom: 0;
       left: 0;
-      padding: 60px;
-      font-family: var(--font-sharp);
-      font-weight: 700;
-      font-size: 60px;
-      letter-spacing: -1.2px;
-      line-height: 0.9;
+      padding: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
       color: white;
       text-transform: capitalize;
       white-space: nowrap;
+      line-height: 0.9;
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(12px);
       transition: opacity 0.3s ease, transform 0.3s ease;
       z-index: 1;
     }
-    .product-card:hover .product-card-label {
+    .product-card:hover .product-card-info {
       opacity: 1;
       transform: translateY(0);
+    }
+    .product-card-name {
+      font-family: var(--font-sharp);
+      font-weight: 700;
+      font-size: 120px;
+      letter-spacing: -2.4px;
+    }
+    .product-card-desc {
+      font-family: var(--font-aeonik);
+      font-weight: 400;
+      font-size: 50px;
+      letter-spacing: -1px;
     }
 
     /* ── Scroll Reveal ── */
@@ -291,19 +309,31 @@
   <div class="product-list">
     <div class="product-card reveal">
       <img src="assets/thumbnail/Gromi-thumbnail.png" alt="Gromi">
-      <span class="product-card-label">Gromi</span>
+      <div class="product-card-info">
+        <p class="product-card-name">Gromi</p>
+        <p class="product-card-desc">The only companion to grow together</p>
+      </div>
     </div>
     <div class="product-card reveal">
       <img src="assets/thumbnail/Weero-thumbnail.png" alt="Weero">
-      <span class="product-card-label">Weero</span>
+      <div class="product-card-info">
+        <p class="product-card-name">Weero</p>
+        <p class="product-card-desc">Rise Above. Clean Beyond.</p>
+      </div>
     </div>
     <div class="product-card reveal">
       <img src="assets/thumbnail/Flow-thumbnail.png" alt="Flow">
-      <span class="product-card-label">Flow</span>
+      <div class="product-card-info">
+        <p class="product-card-name">Flow</p>
+        <p class="product-card-desc">Engineered into the walls. Woven into your life.</p>
+      </div>
     </div>
     <div class="product-card reveal">
       <img src="assets/thumbnail/Egg-thumbnail.png" alt="Galaxy Egg">
-      <span class="product-card-label">Galaxy Egg</span>
+      <div class="product-card-info">
+        <p class="product-card-name">Galaxy Egg</p>
+        <p class="product-card-desc">My small companion always by my side</p>
+      </div>
     </div>
   </div>
 
