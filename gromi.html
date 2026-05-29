@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>Wiing Chickin - Gromi</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Samsung Sharp Sans';
+      src: url('fonts/samsungsharpsans-bold.otf') format('opentype');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'Aeonik';
+      src: url('fonts/Aeonik Medium.otf') format('opentype');
+      font-weight: 500;
+    }
+
+    html { overflow-x: hidden; }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #0081e8;
+      --blue-hover: #3ca8fd;
+      --bg-light: #edf3f8;
+      --dark: #2a2d35;
+      --body-text: #5a5d6b;
+      --font-sharp: 'Samsung Sharp Sans', 'Arial Black', sans-serif;
+      --font-aeonik: 'Aeonik', sans-serif;
+      --font-pretendard: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg-light);
+      font-family: var(--font-pretendard);
+      width: 1920px;
+    }
+
+    /* ── HEADER (minimal: logo + Samsung only) ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      width: 1920px;
+      height: 177px;
+      display: flex;
+      align-items: center;
+      padding: 0 50px;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 1820px;
+    }
+    .logo {
+      position: relative;
+      width: 128px;
+      height: 77px;
+      flex-shrink: 0;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .logo-bg-top {
+      position: absolute;
+      top: 0; left: 0;
+      width: 102px; height: 39px;
+      background: var(--blue);
+    }
+    .logo-bg-bottom {
+      position: absolute;
+      top: 38px; left: 0;
+      width: 128px; height: 39px;
+      background: var(--blue);
+    }
+    .logo-text {
+      position: absolute;
+      top: 2.71px; left: 5.42px;
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 35.208px;
+      line-height: 1;
+      letter-spacing: -0.7042px;
+      color: white;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+    .header-right {
+      position: relative;
+      width: 196.291px;
+      height: 41px;
+      flex-shrink: 0;
+    }
+    .header-right .union-icon {
+      position: absolute;
+      left: 0; top: 0;
+      width: 38px; height: 41px;
+    }
+    .header-right .x-icon {
+      position: absolute;
+      left: 54.01px; top: 12.22px;
+      width: 17.846px; height: 17.846px;
+    }
+    .header-right .samsung-logo-img {
+      position: absolute;
+      left: 87.64px; top: 12.91px;
+      width: 108.648px; height: 17.15px;
+    }
+
+    /* ── TITLE SECTION (영상/이미지 플레이스홀더) ── */
+    .title-section {
+      width: 1920px;
+      height: 839px;
+      background: #797979;
+    }
+
+    /* ── INTRO SECTION ── */
+    .intro-section {
+      width: 1920px;
+      padding: 120px 550px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 65px;
+      text-align: center;
+    }
+    .intro-heading {
+      font-family: var(--font-pretendard);
+      font-size: 80px;
+      line-height: 1.35;
+      letter-spacing: -1.6px;
+      color: var(--dark);
+      white-space: pre-line;
+    }
+    .intro-heading strong {
+      font-weight: 700;
+    }
+    .intro-heading span {
+      font-weight: 500;
+    }
+    .intro-body {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 1.45;
+      letter-spacing: -0.32px;
+      color: var(--body-text);
+      width: 818px;
+    }
+
+    /* ── BACKGROUND/INSIGHT SECTION ── */
+    .background-section {
+      width: 1920px;
+      padding: 60px 50px;
+      background: var(--bg-light);
+      display: flex;
+      flex-direction: column;
+    }
+    .bg-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 81px;
+      padding: 80px 58px;
+    }
+    .bg-image {
+      width: 926px;
+      height: 611px;
+      background: #d9d9d9;
+      border-radius: 30px;
+      flex-shrink: 0;
+    }
+    .bg-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-self: stretch;
+    }
+    .bg-text-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 49px;
+      width: 697px;
+    }
+    .bg-title {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 50px;
+      line-height: 1.35;
+      letter-spacing: -1px;
+      color: var(--dark);
+      white-space: pre-line;
+    }
+    .bg-body {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1.45;
+      letter-spacing: -0.28px;
+      color: var(--body-text);
+    }
+    .bg-source {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      color: var(--body-text);
+    }
+
+    /* ── WHITE SECTION (3D / 영상 플레이스홀더) ── */
+    .white-section {
+      width: 1920px;
+      height: 1045px;
+      background: white;
+    }
+
+    /* ── PRODUCT GOAL SECTION ── */
+    .product-goal-section {
+      width: 1920px;
+      padding: 120px 362px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 65px;
+      text-align: center;
+    }
+    .goal-heading {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 80px;
+      line-height: 1.35;
+      letter-spacing: -1.6px;
+      color: var(--dark);
+      white-space: pre-line;
+    }
+    .goal-body {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 1.45;
+      letter-spacing: -0.32px;
+      color: var(--body-text);
+    }
+
+    /* ── SCENARIO SECTION ── */
+    .scenario-section {
+      width: 1920px;
+      padding: 0 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 65px;
+      align-items: center;
+    }
+
+    /* 탭 바 */
+    .tab-bar {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      background: white;
+      border-radius: 71px;
+      padding: 12px 19px;
+    }
+    .tab-item {
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 36px;
+      letter-spacing: -0.72px;
+      line-height: 1;
+      text-transform: capitalize;
+      color: #9fbad0;
+      cursor: pointer;
+      padding: 12px 26px;
+      border-radius: 44px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tab-item.active {
+      background: #1a1c1d;
+      color: white;
+    }
+
+    /* 시나리오 콘텐츠 */
+    .scenario-content {
+      display: flex;
+      flex-direction: column;
+      gap: 43px;
+      align-items: flex-end;
+      width: 100%;
+    }
+    .scenario-image {
+      width: 1818px;
+      height: 1021px;
+      background: #d9d9d9;
+      border-radius: 30px;
+    }
+    .scenario-footer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 1818px;
+    }
+    .scenario-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .scenario-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58.172px;
+      padding: 5.769px 24.23px;
+      background: #2a2a2a;
+      border-radius: 40.384px;
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 46.153px;
+      letter-spacing: -0.4615px;
+      color: white;
+      line-height: 1;
+      text-align: center;
+    }
+    .scenario-label-text {
+      font-family: var(--font-sharp);
+      font-weight: 700;
+      font-size: 70px;
+      letter-spacing: -0.7px;
+      color: #2a2a2a;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .scenario-desc {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1.4;
+      letter-spacing: -0.24px;
+      color: #6c6c77;
+      width: 1128px;
+    }
+
+    /* ── ERGONOMIC SECTION ── */
+    .ergonomic-section {
+      width: 1920px;
+      padding: 120px 362px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .ergonomic-heading {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 80px;
+      line-height: 1.35;
+      letter-spacing: -1.6px;
+      color: var(--dark);
+    }
+
+    /* ── Scroll Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(48px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-bg-top"></div>
+        <div class="logo-bg-bottom"></div>
+        <div class="logo-text">Wiing<br>chickin</div>
+      </a>
+      <div class="header-right">
+        <img class="union-icon" src="assets/icons/union.svg" alt="">
+        <img class="x-icon"     src="assets/icons/x.svg" alt="">
+        <img class="samsung-logo-img" src="assets/icons/logo.png" alt="Samsung">
+      </div>
+    </div>
+  </header>
+
+  <!-- 타이틀 (영상/이미지 플레이스홀더) -->
+  <div class="title-section"></div>
+
+  <!-- 인트로: 아이와 함께 자라는 단 하나의 동반자 -->
+  <section class="intro-section reveal">
+    <h1 class="intro-heading"><span>아이와 함께 자라는 </span><br><strong>단 하나의 동반자</strong></h1>
+    <p class="intro-body">GROMI는 아이의 성장에 맞추어 함께 자라는 컴패니언 로봇입니다.<br>놀고, 타고, 배우며 성장하는 아이의 모든 순간을 함께합니다.</p>
+  </section>
+
+  <!-- 배경/인사이트 섹션 -->
+  <section class="background-section">
+    <!-- 블록 1: 이미지 왼쪽 -->
+    <div class="bg-row reveal">
+      <div class="bg-image"></div>
+      <div class="bg-text">
+        <div class="bg-text-inner">
+          <p class="bg-title">증가하는 아동들의 스크린 사용량,<br>줄어드는 신체 활동</p>
+          <p class="bg-body">아동의 스크린 사용 시간은 지속적으로 증가하는 반면, 신체활동은 세계 최저 수준에 머물러 발달 저하와 건강 문제가 우려되고 있습니다. 부모들은 스크린을 대체할 신체 기반 놀이와 정서적 교감을 원하지만, 기존 AI 교육 기기는 일방향 상호작용만을 가능하게 하는 한계가 있습니다.</p>
+        </div>
+        <p class="bg-source">출처</p>
+      </div>
+    </div>
+    <!-- 블록 2: 이미지 오른쪽 -->
+    <div class="bg-row reveal">
+      <div class="bg-text">
+        <div class="bg-text-inner">
+          <p class="bg-title">증가하는 아동들의 스크린 사용량,<br>줄어드는 신체 활동</p>
+          <p class="bg-body">아동의 스크린 사용 시간은 지속적으로 증가하는 반면, 신체활동은 세계 최저 수준에 머물러 발달 저하와 건강 문제가 우려되고 있습니다. 부모들은 스크린을 대체할 신체 기반 놀이와 정서적 교감을 원하지만, 기존 AI 교육 기기는 일방향 상호작용만을 가능하게 하는 한계가 있습니다.</p>
+        </div>
+        <p class="bg-source">출처</p>
+      </div>
+      <div class="bg-image"></div>
+    </div>
+  </section>
+
+  <!-- 화이트 섹션 (3D / 폼팩터 플레이스홀더) -->
+  <div class="white-section"></div>
+
+  <!-- 프로덕트 골 -->
+  <section class="product-goal-section reveal">
+    <h2 class="goal-heading">정서적 친구이자<br>신체적 놀이터가 되어주는 AI 컴패니언</h2>
+    <p class="goal-body">태블릿·화면 기반의 기존 학습 기기와는 다르게, GROMI는 신체 접촉 기반 패시브 센싱 기술을 통해<br>자연스럽게 아이의 성장 데이터를 수집하고 기록합니다. 아이가 처음 보행기를 잡은 날부터<br>GROMI와 함께 공부한 날까지, 모든 순간을 기억하며 함께 성장하는 경험을 제공합니다.</p>
+  </section>
+
+  <!-- 시나리오 섹션 -->
+  <section class="scenario-section">
+    <!-- 탭 바 -->
+    <div class="tab-bar reveal">
+      <div class="tab-item active">Grow</div>
+      <div class="tab-item">Play</div>
+      <div class="tab-item">Communication</div>
+      <div class="tab-item">Care</div>
+    </div>
+    <!-- 콘텐츠 -->
+    <div class="scenario-content reveal">
+      <div class="scenario-image"></div>
+      <div class="scenario-footer">
+        <div class="scenario-label">
+          <div class="scenario-num">1</div>
+          <span class="scenario-label-text">Grow</span>
+        </div>
+        <p class="scenario-desc">아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 인체공학적 디자인 -->
+  <section class="ergonomic-section reveal">
+    <h2 class="ergonomic-heading">아이의 입장을 고려한<br>인체공학적 디자인</h2>
+  </section>
+
+  <script>
+    /* ── 반응형 zoom ── */
+    function applyZoom() {
+      document.documentElement.style.zoom = window.innerWidth / 1920;
+    }
+    window.addEventListener('resize', applyZoom);
+    applyZoom();
+
+    /* ── Scroll Reveal ── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
