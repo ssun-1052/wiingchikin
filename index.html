@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>Wiing Chickin - Future of Home Robot & Companion</title>
+  <style>
+    @font-face {
+      font-family: 'Samsung Sharp Sans';
+      src: url('fonts/samsungsharpsans-bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Samsung Sharp Sans';
+      src: url('fonts/samsungsharpsans-medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Aeonik';
+      src: url('fonts/Aeonik Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    html {
+      overflow-x: hidden;
+      /* zoom은 JS에서 동적으로 설정 */
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #0081e8;
+      --blue-hover: #3ca8fd;
+      --bg-light: #edf3f8;
+      --font-sharp: 'Samsung Sharp Sans', 'Arial Black', sans-serif;
+      --font-aeonik: 'Aeonik', 'Inter', sans-serif;
+    }
+
+    body {
+      background: white;
+      font-family: var(--font-aeonik);
+      width: 1920px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      width: 1920px;
+      height: 177px;
+      display: flex;
+      align-items: center;
+      padding: 0 50px;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 1820px;
+    }
+
+    /* Logo */
+    .logo {
+      position: relative;
+      width: 128px;
+      height: 77px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .logo-bg-top {
+      position: absolute;
+      top: 0; left: 0;
+      width: 102px;
+      height: 39px;
+      background: var(--blue);
+    }
+    .logo-bg-bottom {
+      position: absolute;
+      top: 38px; left: 0;
+      width: 128px;
+      height: 39px;
+      background: var(--blue);
+    }
+    .logo-text {
+      position: absolute;
+      top: 2.71px;
+      left: 5.42px;
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 35.208px;
+      line-height: 1;
+      letter-spacing: -0.7042px;
+      color: white;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+    .nav-item {
+      position: relative;
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 26px;
+      letter-spacing: -0.52px;
+      line-height: 1;
+      color: var(--blue);
+      text-transform: capitalize;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      bottom: -4px;
+      width: calc(100% - 2px);
+      height: 1.5px;
+      background: var(--blue-hover);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+    .nav-item:hover {
+      color: var(--blue-hover);
+    }
+    .nav-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Header right */
+    .header-right {
+      position: relative;
+      width: 196.291px;
+      height: 41px;
+      flex-shrink: 0;
+    }
+    .header-right .union-icon {
+      position: absolute;
+      left: 0; top: 0;
+      width: 38px;
+      height: 41px;
+    }
+    .header-right .x-icon {
+      position: absolute;
+      left: 54.01px;
+      top: 12.22px;
+      width: 17.846px;
+      height: 17.846px;
+    }
+    /* Samsung 로고: PNG는 mask용이므로 bg + mask-image로 구현 */
+    .header-right .samsung-logo-container {
+      position: absolute;
+      left: 87.64px;
+      top: 12.91px;
+      width: 108.648px;
+      height: 17.15px;
+    }
+    .header-right .samsung-logo-mask {
+      position: absolute;
+      left: -2.9px;
+      top: -4.2px;
+      width: 112.95px;
+      height: 24.015px;
+      background: #73b8ef;
+      -webkit-mask-image: url('http://localhost:3845/assets/99a09e266ae375d2bdb037a0cb74141e25fc43de.png');
+      mask-image: url('http://localhost:3845/assets/99a09e266ae375d2bdb037a0cb74141e25fc43de.png');
+      -webkit-mask-size: 108.648px 17.15px;
+      mask-size: 108.648px 17.15px;
+      -webkit-mask-position: 2.903px 4.203px;
+      mask-position: 2.903px 4.203px;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+
+    /* ── HERO (video placeholder) ── */
+    .hero {
+      width: 1920px;
+      height: 1080px;
+      background: #797979;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTENT SECTION ── */
+    .content {
+      background: var(--bg-light);
+      width: 1920px;
+    }
+
+    /* Section block: heading row */
+    .section-block {
+      padding: 84px 50px 50px;
+    }
+
+    .list-row {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 1820px;
+      padding-bottom: 19px;
+      cursor: pointer;
+    }
+    .list-row::after {
+      content: '';
+      position: absolute;
+      bottom: 14px;
+      left: 0;
+      width: calc(100% - 24px); /* 1796px = 1820 - 24 */
+      height: 2px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .list-row:hover::after {
+      transform: scaleX(1);
+    }
+
+    .section-heading {
+      font-family: var(--font-sharp);
+      font-weight: 700;
+      font-size: 80px;
+      letter-spacing: -1.6px;
+      color: var(--blue);
+      text-transform: capitalize;
+      line-height: 0.9;
+      white-space: nowrap;
+    }
+
+    /* Arrow icon (default / hover swap) */
+    .arrow-wrap {
+      position: relative;
+      width: 146px;
+      height: 146px;
+      flex-shrink: 0;
+    }
+    .arrow-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+    .arrow-wrap .arrow-hover {
+      opacity: 0;
+    }
+    .list-row:hover .arrow-wrap .arrow-default {
+      opacity: 0;
+    }
+    .list-row:hover .arrow-wrap .arrow-hover {
+      opacity: 1;
+    }
+
+    /* ── THUMBNAILS (horizontal scroll) ── */
+    .thumbnail-section {
+      width: 1920px;
+      padding: 10px 0 10px 50px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      cursor: grab;
+      user-select: none;
+      will-change: scroll-position;
+    }
+    .thumbnail-section.is-dragging .thumb-card {
+      pointer-events: none; /* 드래그 중 hover 효과 방지 */
+    }
+    .thumbnail-section::-webkit-scrollbar {
+      display: none;
+    }
+
+    .thumbnail-track {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 26px;
+    }
+    /* 마지막 카드 이후 50px 여백 보장 (padding-right는 일부 브라우저에서 무시됨) */
+    .thumbnail-spacer {
+      flex: 0 0 50px;
+    }
+
+    .thumb-card {
+      position: relative;
+      flex: 0 0 811px;
+      height: 515px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #d9d9d9;
+      cursor: pointer;
+    }
+
+    /* Hover gradient overlay */
+    .thumb-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .thumb-card:hover::after {
+      opacity: 1;
+    }
+
+    /* Hover label */
+    .thumb-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 50px;
+      font-family: var(--font-sharp);
+      font-weight: 700;
+      font-size: 50px;
+      letter-spacing: -1px;
+      line-height: 0.9;
+      color: white;
+      text-transform: capitalize;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1;
+    }
+    .thumb-card:hover .thumb-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Scroll Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(48px);
+      /* ease-out expo: 빠르게 시작, 부드럽게 착지 */
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <div class="logo">
+        <div class="logo-bg-top"></div>
+        <div class="logo-bg-bottom"></div>
+        <div class="logo-text">Wiing<br>chickin</div>
+      </div>
+
+      <!-- Nav -->
+      <nav>
+        <a class="nav-item">Product</a>
+        <a class="nav-item">About</a>
+        <a class="nav-item">Credits</a>
+      </nav>
+
+      <!-- Right: mascot × Samsung -->
+      <div class="header-right">
+        <img class="union-icon" src="http://localhost:3845/assets/679390a7195b4ebeeeef28ff9b7f90e82f81cbab.svg" alt="">
+        <img class="x-icon"     src="http://localhost:3845/assets/8d3bfd361200a751d11394706ceba1f45f7213c2.svg" alt="">
+        <div class="samsung-logo-container">
+          <div class="samsung-logo-mask"></div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HERO (video placeholder) -->
+  <div class="hero"></div>
+
+  <!-- CONTENT -->
+  <section class="content">
+
+    <!-- Product 섹션 제목 -->
+    <div class="section-block">
+      <div class="list-row">
+        <h2 class="section-heading">Product.</h2>
+        <div class="arrow-wrap">
+          <img class="arrow-default" src="http://localhost:3845/assets/64dc956b0a5ff4ac9f56864e4c1d900016e66263.svg" alt="">
+          <img class="arrow-hover"   src="http://localhost:3845/assets/6ebb6ad3d62eb3907d138a1b0ad7db3deeb6ca6d.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 썸네일 (가로 스크롤) -->
+    <div class="thumbnail-section">
+      <div class="thumbnail-track">
+        <div class="thumb-card">
+          <span class="thumb-label">Name</span>
+        </div>
+        <div class="thumb-card">
+          <span class="thumb-label">Name</span>
+        </div>
+        <div class="thumb-card">
+          <span class="thumb-label">Name</span>
+        </div>
+        <div class="thumb-card">
+          <span class="thumb-label">Name</span>
+        </div>
+        <div class="thumbnail-spacer"></div>
+      </div>
+    </div>
+
+    <!-- About 섹션 제목 -->
+    <div class="section-block">
+      <div class="list-row">
+        <h2 class="section-heading">About.</h2>
+        <div class="arrow-wrap">
+          <img class="arrow-default" src="http://localhost:3845/assets/64dc956b0a5ff4ac9f56864e4c1d900016e66263.svg" alt="">
+          <img class="arrow-hover"   src="http://localhost:3845/assets/6ebb6ad3d62eb3907d138a1b0ad7db3deeb6ca6d.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- Credits 섹션 제목 -->
+    <div class="section-block">
+      <div class="list-row">
+        <h2 class="section-heading">Credits.</h2>
+        <div class="arrow-wrap">
+          <img class="arrow-default" src="http://localhost:3845/assets/64dc956b0a5ff4ac9f56864e4c1d900016e66263.svg" alt="">
+          <img class="arrow-hover"   src="http://localhost:3845/assets/6ebb6ad3d62eb3907d138a1b0ad7db3deeb6ca6d.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    /* ── 반응형 zoom ── */
+    const BASE_WIDTH = 1920;
+
+    function applyZoom() {
+      const zoom = window.innerWidth / BASE_WIDTH;
+      document.documentElement.style.zoom = zoom;
+    }
+
+    window.addEventListener('resize', applyZoom);
+    applyZoom();
+
+    /* ── 썸네일 드래그 + 관성 스크롤 ── */
+    const slider = document.querySelector('.thumbnail-section');
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let velocity = 0;
+    let prevX = 0;
+    let prevTime = 0;
+    let rafId = null;
+
+    function stopMomentum() {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
+    function runMomentum() {
+      if (Math.abs(velocity) < 0.4) { velocity = 0; return; }
+      slider.scrollLeft += velocity;
+      velocity *= 0.93; /* 감속 계수 — 낮을수록 빨리 멈춤 */
+      rafId = requestAnimationFrame(runMomentum);
+    }
+
+    slider.addEventListener('mousedown', (e) => {
+      stopMomentum();
+      isDragging = true;
+      velocity = 0;
+      startX = e.clientX;
+      scrollStart = slider.scrollLeft;
+      prevX = e.clientX;
+      prevTime = performance.now();
+      slider.style.cursor = 'grabbing';
+      slider.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const dx = e.clientX - startX;
+      slider.scrollLeft = scrollStart - dx;
+
+      const now = performance.now();
+      const dt = now - prevTime;
+      if (dt > 0) velocity = (prevX - e.clientX) / dt * 16;
+      prevX = e.clientX;
+      prevTime = now;
+    }, { passive: false });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      slider.style.cursor = 'grab';
+      slider.classList.remove('is-dragging');
+      rafId = requestAnimationFrame(runMomentum);
+    });
+
+    /* ── Scroll Reveal (Intersection Observer) ── */
+    const REVEAL_OPTIONS = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'  /* 뷰포트 하단 40px 전에 미리 트리거 */
+    };
+
+    /* 섹션 제목 행 (.list-row) — 하나씩 순서대로 올라옴 */
+    const listObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        listObserver.unobserve(entry.target);
+      });
+    }, REVEAL_OPTIONS);
+
+    document.querySelectorAll('.list-row').forEach(el => {
+      el.classList.add('reveal');
+      listObserver.observe(el);
+    });
+
+    /* 히어로 섹션 — 페이지 로드 시 fade-in */
+    const hero = document.querySelector('.hero');
+    hero.classList.add('reveal');
+    requestAnimationFrame(() => hero.classList.add('in-view'));
+
+    /* 썸네일 카드 — 섹션이 보이면 카드를 80ms 간격으로 순차 등장 */
+    const thumbObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.thumb-card').forEach((card, i) => {
+          card.style.transitionDelay = `${i * 80}ms`;
+          requestAnimationFrame(() => card.classList.add('in-view'));
+        });
+        thumbObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.05 });
+
+    document.querySelector('.thumbnail-section')
+      .querySelectorAll('.thumb-card')
+      .forEach(c => c.classList.add('reveal'));
+    thumbObserver.observe(document.querySelector('.thumbnail-section'));
+  </script>
+</body>
+</html>
