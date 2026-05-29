@@ -163,29 +163,12 @@
       width: 17.846px;
       height: 17.846px;
     }
-    /* Samsung 로고: PNG는 mask용이므로 bg + mask-image로 구현 */
-    .header-right .samsung-logo-container {
+    .header-right .samsung-logo-img {
       position: absolute;
       left: 87.64px;
       top: 12.91px;
       width: 108.648px;
       height: 17.15px;
-    }
-    .header-right .samsung-logo-mask {
-      position: absolute;
-      left: -2.9px;
-      top: -4.2px;
-      width: 112.95px;
-      height: 24.015px;
-      background: #73b8ef;
-      -webkit-mask-image: url('assets/icons/samsung-mask.png');
-      mask-image: url('assets/icons/samsung-mask.png');
-      -webkit-mask-size: 108.648px 17.15px;
-      mask-size: 108.648px 17.15px;
-      -webkit-mask-position: 2.903px 4.203px;
-      mask-position: 2.903px 4.203px;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
     }
 
     /* ── HERO (video placeholder) ── */
@@ -307,6 +290,14 @@
       background: #d9d9d9;
       cursor: pointer;
     }
+    .thumb-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     /* Hover gradient overlay */
     .thumb-card::after {
@@ -385,9 +376,7 @@
       <div class="header-right">
         <img class="union-icon" src="assets/icons/union.svg" alt="">
         <img class="x-icon"     src="assets/icons/x.svg" alt="">
-        <div class="samsung-logo-container">
-          <div class="samsung-logo-mask"></div>
-        </div>
+        <img class="samsung-logo-img" src="assets/icons/logo.png" alt="Samsung">
       </div>
 
     </div>
@@ -414,16 +403,20 @@
     <div class="thumbnail-section">
       <div class="thumbnail-track">
         <div class="thumb-card">
-          <span class="thumb-label">Name</span>
+          <img class="thumb-img" src="assets/thumbnail/Gromi-thumbnail.png" alt="Gromi">
+          <span class="thumb-label">Gromi</span>
         </div>
         <div class="thumb-card">
-          <span class="thumb-label">Name</span>
+          <img class="thumb-img" src="assets/thumbnail/Weero-thumbnail.png" alt="Weero">
+          <span class="thumb-label">Weero</span>
         </div>
         <div class="thumb-card">
-          <span class="thumb-label">Name</span>
+          <img class="thumb-img" src="assets/thumbnail/Flow-thumbnail.png" alt="Flow">
+          <span class="thumb-label">Flow</span>
         </div>
         <div class="thumb-card">
-          <span class="thumb-label">Name</span>
+          <img class="thumb-img" src="assets/thumbnail/Egg-thumbnail.png" alt="Egg">
+          <span class="thumb-label">Galaxy Egg</span>
         </div>
         <div class="thumbnail-spacer"></div>
       </div>
