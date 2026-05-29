@@ -524,9 +524,11 @@
     /* 섹션 제목 행 (.list-row) — 하나씩 순서대로 올라옴 */
     const listObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('in-view');
-        listObserver.unobserve(entry.target);
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        } else {
+          entry.target.classList.remove('in-view');
+        }
       });
     }, REVEAL_OPTIONS);
 
@@ -543,12 +545,20 @@
     /* 썸네일 카드 — 섹션이 보이면 카드를 80ms 간격으로 순차 등장 */
     const thumbObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.querySelectorAll('.thumb-card').forEach((card, i) => {
-          card.style.transitionDelay = `${i * 80}ms`;
-          requestAnimationFrame(() => card.classList.add('in-view'));
-        });
-        thumbObserver.unobserve(entry.target);
+        const cards = entry.target.querySelectorAll('.thumb-card');
+        if (entry.isIntersecting) {
+          /* 진입: 순서대로 등장 */
+          cards.forEach((card, i) => {
+            card.style.transitionDelay = `${i * 80}ms`;
+            requestAnimationFrame(() => card.classList.add('in-view'));
+          });
+        } else {
+          /* 이탈: 역순으로 사라짐 */
+          cards.forEach((card, i) => {
+            card.style.transitionDelay = `${(cards.length - 1 - i) * 60}ms`;
+            card.classList.remove('in-view');
+          });
+        }
       });
     }, { threshold: 0.05 });
 
