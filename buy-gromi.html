@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>Wiing Chickin - Buy Gromi</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Samsung Sharp Sans';
+      src: url('fonts/samsungsharpsans-bold.otf') format('opentype');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'Aeonik';
+      src: url('fonts/Aeonik Medium.otf') format('opentype');
+      font-weight: 500;
+    }
+
+    html { overflow-x: hidden; }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #0081e8;
+      --blue-hover: #3ca8fd;
+      --bg-light: #edf3f8;
+      --dark: #2a2d35;
+      --font-sharp: 'Samsung Sharp Sans', 'Arial Black', sans-serif;
+      --font-aeonik: 'Aeonik', sans-serif;
+      --font-pretendard: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg-light);
+      font-family: var(--font-pretendard);
+      width: 1920px;
+      min-height: 1492px;
+    }
+
+    /* ── STICKY HEADER WRAPPER ── */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 1920px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: white;
+      width: 1920px;
+      height: 177px;
+      display: flex;
+      align-items: center;
+      padding: 0 50px;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 1820px;
+    }
+    .logo {
+      position: relative;
+      width: 128px;
+      height: 77px;
+      flex-shrink: 0;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .logo-bg-top {
+      position: absolute;
+      top: 0; left: 0;
+      width: 102px; height: 39px;
+      background: var(--blue);
+    }
+    .logo-bg-bottom {
+      position: absolute;
+      top: 38px; left: 0;
+      width: 128px; height: 39px;
+      background: var(--blue);
+    }
+    .logo-text {
+      position: absolute;
+      top: 2.71px; left: 5.42px;
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 35.208px;
+      line-height: 1;
+      letter-spacing: -0.7042px;
+      color: white;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+    nav {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+    .nav-item {
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 26px;
+      letter-spacing: -0.52px;
+      line-height: 1;
+      color: var(--blue);
+      text-transform: capitalize;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .header-right {
+      position: relative;
+      width: 196.291px;
+      height: 41px;
+      flex-shrink: 0;
+    }
+    .header-right .union-icon {
+      position: absolute;
+      left: 0; top: 0;
+      width: 38px; height: 41px;
+    }
+    .header-right .x-icon {
+      position: absolute;
+      left: 54.01px; top: 12.22px;
+      width: 17.846px; height: 17.846px;
+    }
+    .header-right .samsung-logo-img {
+      position: absolute;
+      left: 87.64px; top: 12.91px;
+      width: 108.648px; height: 17.15px;
+    }
+
+    /* ── GROMI TITLE BAR ── */
+    .gromi-title-bar {
+      background: #f5f9fc;
+      width: 1920px;
+      height: 104px;
+      display: flex;
+      align-items: center;
+      padding: 26px 57px;
+    }
+    .gromi-title-text {
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 52.571px;
+      letter-spacing: -1.0514px;
+      line-height: 1;
+      color: #000;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      display: flex;
+      align-items: center;
+      gap: 73px;
+      width: 1700px;
+      margin: 0 auto;
+      padding: 95px 0 120px;
+    }
+
+    /* ── 이미지 캐러셀 ── */
+    .photo-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      width: 1093px;
+      flex-shrink: 0;
+    }
+    .carousel {
+      position: relative;
+      width: 1093px;
+      height: 783px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #797979;
+    }
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .carousel-slide.active { opacity: 1; }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .dots {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #bbcbd8;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .dot.active {
+      background: var(--blue);
+      transform: scale(1.2);
+    }
+
+    /* ── 구매 폼 ── */
+    .buy-form {
+      display: flex;
+      flex-direction: column;
+      gap: 149px;
+      width: 534px;
+      flex-shrink: 0;
+    }
+    .buy-options {
+      display: flex;
+      flex-direction: column;
+      gap: 65px;
+    }
+    .buy-option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .buy-option-label {
+      font-family: var(--font-pretendard);
+      font-weight: 600;
+      font-size: 40px;
+      letter-spacing: -0.8px;
+      line-height: 1.35;
+      color: #2a2d35;
+    }
+
+    /* 모델 드롭다운 */
+    .model-select {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border: 1px solid #bbcbd8;
+      border-radius: 36px;
+      width: 534px;
+      cursor: pointer;
+    }
+    .model-select-text {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 28px;
+      letter-spacing: -0.56px;
+      line-height: 1.35;
+      color: #5d6270;
+      white-space: nowrap;
+    }
+    .caret-icon {
+      width: 27px;
+      height: 27px;
+      flex-shrink: 0;
+    }
+    .caret-icon svg { width: 100%; height: 100%; }
+
+    /* 색상 */
+    .color-swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 72px;
+    }
+    .color-circle {
+      width: 69px;
+      height: 69px;
+      border-radius: 50%;
+      background: #f5c842;
+      flex-shrink: 0;
+    }
+    .color-name {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 28px;
+      letter-spacing: -0.56px;
+      line-height: 1.35;
+      color: #5d6270;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* 수량 */
+    .quantity-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .quantity-counter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: white;
+      border: 1px solid #bbcbd8;
+      border-radius: 36px;
+      width: 165px;
+    }
+    .qty-btn {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 28px;
+      letter-spacing: -0.56px;
+      color: #b6bbc7;
+      cursor: pointer;
+      user-select: none;
+      line-height: 1;
+    }
+    .qty-value {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 28px;
+      letter-spacing: -0.56px;
+      color: #5d6270;
+      line-height: 1;
+    }
+
+    /* 구매하기 버튼 */
+    .buy-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 24px;
+      background: #1d2023;
+      border-radius: 42px;
+      width: 100%;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .buy-button:hover { opacity: 0.85; }
+    .buy-button-text {
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 38px;
+      letter-spacing: -0.76px;
+      line-height: 1;
+      color: white;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER + GROMI TITLE BAR -->
+  <div class="sticky-header">
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-bg-top"></div>
+          <div class="logo-bg-bottom"></div>
+          <div class="logo-text">Wiing<br>chickin</div>
+        </a>
+        <nav>
+          <a href="product.html" class="nav-item">Product</a>
+          <a href="#" class="nav-item">About</a>
+          <a href="#" class="nav-item">Credits</a>
+        </nav>
+        <div class="header-right">
+          <img class="union-icon" src="assets/icons/union.svg" alt="">
+          <img class="x-icon"     src="assets/icons/x.svg" alt="">
+          <img class="samsung-logo-img" src="assets/icons/logo.png" alt="Samsung">
+        </div>
+      </div>
+    </header>
+    <div class="gromi-title-bar">
+      <a href="gromi.html" class="gromi-title-text">Gromi</a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- 이미지 캐러셀 -->
+    <div class="photo-area">
+      <div class="carousel">
+        <div class="carousel-slide active">
+          <img src="assets/images/detail shot/gromi/gromi-module-1.png" alt="Gromi Module 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/images/detail shot/gromi/gromi-module-2.png" alt="Gromi Module 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/images/detail shot/gromi/gromi-module-3.png" alt="Gromi Module 3">
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/images/detail shot/gromi/gromi-module-4.png" alt="Gromi Module 4">
+        </div>
+      </div>
+      <div class="dots">
+        <div class="dot active" data-idx="0"></div>
+        <div class="dot" data-idx="1"></div>
+        <div class="dot" data-idx="2"></div>
+        <div class="dot" data-idx="3"></div>
+      </div>
+    </div>
+
+    <!-- 구매 폼 -->
+    <div class="buy-form">
+      <div class="buy-options">
+
+        <!-- 모델 -->
+        <div class="buy-option-group">
+          <p class="buy-option-label">모델</p>
+          <div class="model-select">
+            <span class="model-select-text">헤드 모듈</span>
+            <div class="caret-icon">
+              <svg viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 10L13.5 17L21 10" stroke="#5d6270" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 색상 -->
+        <div class="buy-option-group">
+          <p class="buy-option-label">색상</p>
+          <div class="color-swatch">
+            <div class="color-circle"></div>
+            <p class="color-name">옐로우</p>
+          </div>
+        </div>
+
+        <!-- 수량 -->
+        <div class="buy-option-group">
+          <div class="quantity-row">
+            <p class="buy-option-label">수량</p>
+            <div class="quantity-counter">
+              <span class="qty-btn" id="qty-minus">-</span>
+              <span class="qty-value" id="qty-value">1</span>
+              <span class="qty-btn" id="qty-plus">+</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 구매하기 버튼 -->
+      <a href="#" class="buy-button">
+        <span class="buy-button-text">구매하기</span>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    /* ── 반응형 zoom ── */
+    function applyZoom() {
+      document.documentElement.style.zoom = window.innerWidth / 1920;
+    }
+    window.addEventListener('resize', applyZoom);
+    applyZoom();
+
+    /* ── 캐러셀 ── */
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots   = document.querySelectorAll('.dot');
+    let current = 0;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = idx;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => goTo(parseInt(dot.dataset.idx)));
+    });
+
+    /* ── 수량 ── */
+    let qty = 1;
+    const qtyValue = document.getElementById('qty-value');
+    document.getElementById('qty-minus').addEventListener('click', () => {
+      if (qty > 1) { qty--; qtyValue.textContent = qty; }
+    });
+    document.getElementById('qty-plus').addEventListener('click', () => {
+      qty++;
+      qtyValue.textContent = qty;
+    });
+  </script>
+
+</body>
+</html>

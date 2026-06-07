@@ -171,12 +171,103 @@
       height: 17.15px;
     }
 
-    /* ── HERO (video placeholder) ── */
+    /* ── HERO VIDEO ── */
     .hero {
+      position: relative;
       width: 1920px;
       height: 1080px;
-      background: #797979;
+      background: #000;
       flex-shrink: 0;
+      overflow: hidden;
+    }
+    .hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 컨트롤 오버레이 */
+    .hero-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0 60px 50px;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .hero:hover .hero-controls,
+    .hero.paused .hero-controls { opacity: 1; }
+
+    /* 진행 바 */
+    .progress-wrap {
+      position: relative;
+      width: 100%;
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: white;
+      border-radius: 2px;
+      pointer-events: none;
+      transition: width 0.1s linear;
+    }
+    .progress-wrap:hover .progress-fill { background: var(--blue); }
+    /* 드래그 핸들 */
+    .progress-wrap::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: white;
+      transition: transform 0.15s ease, left 0s;
+      pointer-events: none;
+    }
+    .progress-wrap:hover::after { transform: translate(-50%, -50%) scale(1); }
+
+    /* 하단 버튼 행 */
+    .controls-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .ctrl-btn {
+      width: 48px;
+      height: 48px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      opacity: 0.9;
+      transition: opacity 0.15s, transform 0.15s;
+      flex-shrink: 0;
+    }
+    .ctrl-btn:hover { opacity: 1; transform: scale(1.1); }
+    .ctrl-btn svg { width: 100%; height: 100%; }
+
+    /* 시간 표시 */
+    .ctrl-time {
+      font-family: var(--font-aeonik);
+      font-size: 22px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      user-select: none;
     }
 
     /* ── CONTENT SECTION ── */
@@ -384,8 +475,53 @@
     </div>
   </header>
 
-  <!-- HERO (video placeholder) -->
-  <div class="hero"></div>
+  <!-- HERO VIDEO -->
+  <div class="hero" id="hero">
+    <video id="hero-video" src="assets/videos/intro-final.mp4"
+           autoplay muted playsinline loop preload="auto"></video>
+
+    <div class="hero-controls" id="hero-controls">
+      <!-- 진행 바 -->
+      <div class="progress-wrap" id="progress-wrap">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <!-- 버튼 행 -->
+      <div class="controls-row">
+        <!-- 재생/일시정지 -->
+        <button class="ctrl-btn" id="btn-play" aria-label="재생/일시정지">
+          <!-- Pause icon (기본: 재생 중) -->
+          <svg id="icon-pause" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="8" width="10" height="32" rx="2" fill="white"/>
+            <rect x="28" y="8" width="10" height="32" rx="2" fill="white"/>
+          </svg>
+          <!-- Play icon (일시정지 시 표시) -->
+          <svg id="icon-play" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+            <path d="M10 8 L40 24 L10 40 Z" fill="white"/>
+          </svg>
+        </button>
+
+        <!-- 음소거 -->
+        <button class="ctrl-btn" id="btn-mute" aria-label="음소거/해제">
+          <!-- Volume icon -->
+          <svg id="icon-volume" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 17H18L28 9V39L18 31H10V17Z" fill="white"/>
+            <path d="M33 18C35.2 20.2 35.2 27.8 33 30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M37 14C41 18 41 30 37 34" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <!-- Mute icon -->
+          <svg id="icon-mute" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+            <path d="M10 17H18L28 9V39L18 31H10V17Z" fill="white"/>
+            <line x1="33" y1="17" x2="43" y2="31" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="43" y1="17" x2="33" y2="31" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- 시간 -->
+        <span class="ctrl-time" id="ctrl-time">0:00 / 0:00</span>
+      </div>
+    </div>
+  </div>
 
   <!-- CONTENT -->
   <section class="content">
@@ -449,6 +585,95 @@
   </section>
 
   <script>
+    /* ── 히어로 비디오 컨트롤 ── */
+    const heroEl    = document.getElementById('hero');
+    const video     = document.getElementById('hero-video');
+    const btnPlay   = document.getElementById('btn-play');
+    const btnMute   = document.getElementById('btn-mute');
+    const progWrap  = document.getElementById('progress-wrap');
+    const progFill  = document.getElementById('progress-fill');
+    const ctrlTime  = document.getElementById('ctrl-time');
+    const iconPlay  = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
+    const iconVol   = document.getElementById('icon-volume');
+    const iconMute  = document.getElementById('icon-mute');
+
+    function fmt(s) {
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60).toString().padStart(2, '0');
+      return `${m}:${sec}`;
+    }
+
+    function updatePlayIcon() {
+      if (video.paused) {
+        iconPlay.style.display  = '';
+        iconPause.style.display = 'none';
+        heroEl.classList.add('paused');
+      } else {
+        iconPlay.style.display  = 'none';
+        iconPause.style.display = '';
+        heroEl.classList.remove('paused');
+      }
+    }
+
+    function updateMuteIcon() {
+      iconVol.style.display  = video.muted ? 'none' : '';
+      iconMute.style.display = video.muted ? '' : 'none';
+    }
+
+    /* 재생/일시정지 */
+    btnPlay.addEventListener('click', () => {
+      video.paused ? video.play() : video.pause();
+    });
+    video.addEventListener('play',  updatePlayIcon);
+    video.addEventListener('pause', updatePlayIcon);
+
+    /* 음소거 */
+    btnMute.addEventListener('click', () => {
+      video.muted = !video.muted;
+      updateMuteIcon();
+    });
+
+    /* 진행 바 업데이트 */
+    video.addEventListener('timeupdate', () => {
+      if (!video.duration) return;
+      const pct = (video.currentTime / video.duration) * 100;
+      progFill.style.width = pct + '%';
+      progWrap.style.setProperty('--prog', pct + '%');
+      ctrlTime.textContent = `${fmt(video.currentTime)} / ${fmt(video.duration)}`;
+    });
+
+    video.addEventListener('loadedmetadata', () => {
+      ctrlTime.textContent = `0:00 / ${fmt(video.duration)}`;
+    });
+
+    /* 진행 바 클릭/드래그로 탐색 */
+    let isSeeking = false;
+
+    function seekTo(e) {
+      const rect = progWrap.getBoundingClientRect();
+      const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      video.currentTime = pct * video.duration;
+    }
+
+    progWrap.addEventListener('mousedown', (e) => {
+      isSeeking = true;
+      seekTo(e);
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isSeeking) return;
+      seekTo(e);
+      /* progress-wrap::after 핸들 위치 수동 업데이트 */
+      const rect = progWrap.getBoundingClientRect();
+      const pct  = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+      progFill.style.width = pct + '%';
+    });
+    window.addEventListener('mouseup', () => { isSeeking = false; });
+
+    /* 초기 상태 */
+    updatePlayIcon();
+    updateMuteIcon();
+
     /* ── 반응형 zoom ── */
     const BASE_WIDTH = 1920;
 
@@ -538,9 +763,8 @@
     });
 
     /* 히어로 섹션 — 페이지 로드 시 fade-in */
-    const hero = document.querySelector('.hero');
-    hero.classList.add('reveal');
-    requestAnimationFrame(() => hero.classList.add('in-view'));
+    heroEl.classList.add('reveal');
+    requestAnimationFrame(() => heroEl.classList.add('in-view'));
 
     /* 썸네일 카드 — 섹션이 보이면 카드를 80ms 간격으로 순차 등장 */
     const thumbObserver = new IntersectionObserver((entries) => {

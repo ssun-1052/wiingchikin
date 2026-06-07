@@ -43,11 +43,17 @@
       width: 1920px;
     }
 
-    /* ── HEADER (minimal: logo + Samsung only) ── */
-    header {
+    /* ── STICKY HEADER WRAPPER ── */
+    .sticky-header {
       position: sticky;
-      top: 0;
+      top: -177px;
       z-index: 100;
+      width: 1920px;
+      transition: top 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ── HEADER ── */
+    header {
       background: white;
       width: 1920px;
       height: 177px;
@@ -61,6 +67,38 @@
       justify-content: space-between;
       width: 1820px;
     }
+
+    /* Nav */
+    nav {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+    .nav-item {
+      position: relative;
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 26px;
+      letter-spacing: -0.52px;
+      line-height: 1;
+      color: var(--blue);
+      text-transform: capitalize;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 100%; height: 1.5px;
+      background: var(--blue-hover);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+    .nav-item:hover { color: var(--blue-hover); }
+    .nav-item:hover::after { transform: scaleX(1); }
     .logo {
       position: relative;
       width: 128px;
@@ -114,6 +152,52 @@
       left: 87.64px; top: 12.91px;
       width: 108.648px; height: 17.15px;
     }
+
+    /* ── GROMI TITLE BAR ── */
+    .gromi-title-bar {
+      background: #f5f9fc;
+      width: 1920px;
+      height: 104px;
+      display: flex;
+      align-items: center;
+      padding: 26px 57px;
+    }
+    .gromi-title-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .gromi-title-text {
+      font-family: var(--font-aeonik);
+      font-weight: 500;
+      font-size: 52.571px;
+      letter-spacing: -1.0514px;
+      line-height: 1;
+      color: #000;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+    .gromi-buy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1d2023;
+      border-radius: 42px;
+      padding: 10px 24px;
+      font-family: var(--font-pretendard);
+      font-weight: 500;
+      font-size: 30px;
+      letter-spacing: -0.6px;
+      line-height: 1;
+      color: white;
+      text-decoration: none;
+      text-transform: capitalize;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .gromi-buy-btn:hover { opacity: 0.8; }
 
     /* ── TITLE SECTION ── */
     .title-section {
@@ -224,51 +308,6 @@
       color: var(--body-text);
     }
 
-    /* ── 3D VIEWER ── */
-    .viewer-3d {
-      position: relative;
-      width: 1920px;
-      height: 1045px;
-      background: white;
-      overflow: hidden;
-      cursor: grab;
-    }
-    .viewer-3d:active { cursor: grabbing; }
-    .viewer-3d canvas {
-      display: block;
-      width: 100% !important;
-      height: 100% !important;
-    }
-    .viewer-loading {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-aeonik);
-      font-weight: 500;
-      font-size: 24px;
-      letter-spacing: -0.5px;
-      color: #aaa;
-      pointer-events: none;
-      z-index: 2;
-      transition: opacity 0.6s ease;
-    }
-    .viewer-hint {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-aeonik);
-      font-weight: 500;
-      font-size: 18px;
-      letter-spacing: -0.3px;
-      color: #bbb;
-      pointer-events: none;
-      z-index: 2;
-      transition: opacity 0.6s ease;
-    }
-
     /* ── PRODUCT GOAL SECTION ── */
     .product-goal-section {
       width: 1920px;
@@ -307,14 +346,16 @@
       align-items: center;
     }
 
-    /* 탭 바 */
-    .tab-bar {
+    /* gromi-sc 탭 바 */
+    .gromi-sc {
       display: flex;
       align-items: center;
-      gap: 50px;
+      justify-content: space-between;
       background: white;
       border-radius: 71px;
-      padding: 12px 19px;
+      width: 775px;
+      padding: 12px 47px 12px 18px;
+      flex-shrink: 0;
     }
     .tab-item {
       font-family: var(--font-aeonik);
@@ -325,13 +366,16 @@
       text-transform: capitalize;
       color: #9fbad0;
       cursor: pointer;
-      padding: 12px 26px;
       border-radius: 44px;
       transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
     }
     .tab-item.active {
       background: #1a1c1d;
       color: white;
+      padding: 12px 26px;
+      width: 138px;
+      text-align: center;
     }
 
     /* 시나리오 콘텐츠 */
@@ -404,6 +448,15 @@
       width: 1128px;
     }
 
+    /* 시나리오 전환 애니메이션 */
+    .scenario-transition {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .scenario-transition.fade-out {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
     /* ── ERGONOMIC SECTION ── */
     .ergonomic-section {
       width: 1920px;
@@ -422,6 +475,79 @@
       color: var(--dark);
     }
 
+    /* ── VISUAL SECTION (영상 대체) ── */
+    .visual-section {
+      width: 1920px;
+      height: 1080px;
+      background: #797979;
+      overflow: hidden;
+      position: relative;
+    }
+    .visual-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── MODULE SECTION ── */
+    .module-section {
+      position: relative;
+      width: 1920px;
+      height: 1060px;
+      background: var(--bg-light);
+      overflow: hidden;
+    }
+    .module-title {
+      position: absolute;
+      left: 110px;
+      top: 122px;
+      font-family: var(--font-pretendard);
+      font-weight: 700;
+      font-size: 42px;
+      line-height: 1.35;
+      letter-spacing: -0.462px;
+      color: #1c1e22;
+      white-space: pre-line;
+    }
+    .module-head-img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1081px;
+      height: 1060px;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .module-desc {
+      position: absolute;
+      left: 406px;
+      top: 580px;
+      width: 440px;
+    }
+    .module-desc-label {
+      font-family: var(--font-pretendard);
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1.5;
+      letter-spacing: -0.28px;
+      color: #1c1e22;
+      margin-bottom: 8px;
+    }
+    .module-desc-body {
+      font-family: var(--font-pretendard);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+      letter-spacing: -0.18px;
+      color: #5a5d6b;
+    }
+    .module-arrow {
+      display: block;
+      margin-top: 28px;
+      width: 385px;
+    }
+
     /* ── Scroll Reveal ── */
     .reveal {
       opacity: 0;
@@ -437,21 +563,34 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <div class="logo-bg-top"></div>
-        <div class="logo-bg-bottom"></div>
-        <div class="logo-text">Wiing<br>chickin</div>
-      </a>
-      <div class="header-right">
-        <img class="union-icon" src="assets/icons/union.svg" alt="">
-        <img class="x-icon"     src="assets/icons/x.svg" alt="">
-        <img class="samsung-logo-img" src="assets/icons/logo.png" alt="Samsung">
+  <!-- STICKY HEADER + GROMI TITLE BAR -->
+  <div class="sticky-header">
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-bg-top"></div>
+          <div class="logo-bg-bottom"></div>
+          <div class="logo-text">Wiing<br>chickin</div>
+        </a>
+        <nav>
+          <a href="product.html" class="nav-item">Product</a>
+          <a href="#" class="nav-item">About</a>
+          <a href="#" class="nav-item">Credits</a>
+        </nav>
+        <div class="header-right">
+          <img class="union-icon" src="assets/icons/union.svg" alt="">
+          <img class="x-icon"     src="assets/icons/x.svg" alt="">
+          <img class="samsung-logo-img" src="assets/icons/logo.png" alt="Samsung">
+        </div>
+      </div>
+    </header>
+    <div class="gromi-title-bar">
+      <div class="gromi-title-inner">
+        <a href="gromi.html" class="gromi-title-text">Gromi</a>
+        <a href="buy-gromi.html" class="gromi-buy-btn">구매하기</a>
       </div>
     </div>
-  </header>
+  </div>
 
   <!-- 타이틀 이미지 -->
   <div class="title-section">
@@ -490,12 +629,6 @@
     </div>
   </section>
 
-  <!-- 3D 뷰어 -->
-  <div class="viewer-3d" id="viewer-3d">
-    <div class="viewer-loading" id="viewer-loading">Loading 3D Model...</div>
-    <div class="viewer-hint" id="viewer-hint">드래그하여 360° 회전</div>
-  </div>
-
   <!-- 프로덕트 골 -->
   <section class="product-goal-section reveal">
     <h2 class="goal-heading">정서적 친구이자<br>신체적 놀이터가 되어주는 AI 컴패니언</h2>
@@ -504,24 +637,24 @@
 
   <!-- 시나리오 섹션 -->
   <section class="scenario-section">
-    <!-- 탭 바 -->
-    <div class="tab-bar reveal">
-      <div class="tab-item active">Grow</div>
-      <div class="tab-item">Play</div>
-      <div class="tab-item">Communication</div>
-      <div class="tab-item">Care</div>
+    <!-- gromi-sc 탭 바 -->
+    <div class="gromi-sc reveal">
+      <div class="tab-item active" data-tab="0">Grow</div>
+      <div class="tab-item" data-tab="1">Play</div>
+      <div class="tab-item" data-tab="2">Communication</div>
+      <div class="tab-item" data-tab="3">Care</div>
     </div>
     <!-- 콘텐츠 -->
     <div class="scenario-content reveal">
-      <div class="scenario-image">
-        <img src="assets/images/scenario-gromi/scenario-gromi-1.png" alt="Gromi Scenario 1">
+      <div class="scenario-image scenario-transition">
+        <img id="scenario-img" src="assets/images/scenario-gromi/scenario-gromi-1.png" alt="Gromi Scenario 1">
       </div>
-      <div class="scenario-footer">
+      <div class="scenario-footer scenario-transition">
         <div class="scenario-label">
-          <div class="scenario-num">1</div>
-          <span class="scenario-label-text">Grow</span>
+          <div class="scenario-num" id="scenario-num">1</div>
+          <span class="scenario-label-text" id="scenario-label">Grow</span>
         </div>
-        <p class="scenario-desc">아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.</p>
+        <p class="scenario-desc" id="scenario-desc">아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.</p>
       </div>
     </div>
   </section>
@@ -531,134 +664,26 @@
     <h2 class="ergonomic-heading">아이의 입장을 고려한<br>인체공학적 디자인</h2>
   </section>
 
-  <!-- Three.js importmap -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-    }
-  }
-  </script>
+  <!-- 비주얼 섹션 (영상 대체) -->
+  <div class="visual-section">
+    <img src="assets/images/title/gromi-title.png" alt="Gromi Visual">
+  </div>
 
-  <!-- 3D 뷰어 -->
-  <script type="module">
-    import * as THREE from 'three';
-    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-    const container   = document.getElementById('viewer-3d');
-    const loadingEl   = document.getElementById('viewer-loading');
-    const hintEl      = document.getElementById('viewer-hint');
-    const W = 1920, H = 1045;
-
-    /* Renderer */
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(W, H);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    container.appendChild(renderer.domElement);
-
-    /* Scene */
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
-
-    /* Camera */
-    const camera = new THREE.PerspectiveCamera(40, W / H, 0.01, 1000);
-
-    /* Lights */
-    scene.add(new THREE.AmbientLight(0xffffff, 1.8));
-
-    const key = new THREE.DirectionalLight(0xffffff, 2.5);
-    key.position.set(4, 8, 6);
-    key.castShadow = true;
-    scene.add(key);
-
-    const fill = new THREE.DirectionalLight(0xd0e8ff, 1.2);
-    fill.position.set(-6, 2, -4);
-    scene.add(fill);
-
-    const rim = new THREE.DirectionalLight(0xfff0e0, 0.8);
-    rim.position.set(0, -4, -6);
-    scene.add(rim);
-
-    /* Controls */
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.06;
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 1.2;
-    controls.enableZoom = true;
-    controls.enablePan = false;
-    controls.minPolarAngle = Math.PI * 0.15;
-    controls.maxPolarAngle = Math.PI * 0.82;
-
-    /* 마우스 드래그 시 자동 회전 중지, hint 숨김 */
-    renderer.domElement.addEventListener('pointerdown', () => {
-      controls.autoRotate = false;
-      hintEl.style.opacity = '0';
-    });
-
-    /* Load GLB */
-    const loader = new GLTFLoader();
-    loader.load(
-      'assets/3d/gromi.glb',
-      (gltf) => {
-        const model = gltf.scene;
-
-        /* 모델 중앙 정렬 + 자동 스케일 */
-        const box    = new THREE.Box3().setFromObject(model);
-        const center = box.getCenter(new THREE.Vector3());
-        const size   = box.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scale  = 2.4 / maxDim;
-
-        model.position.sub(center.multiplyScalar(scale));
-        model.scale.setScalar(scale);
-
-        /* 그림자 */
-        model.traverse(child => {
-          if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-          }
-        });
-
-        scene.add(model);
-
-        /* 카메라 위치: 모델 크기 기반 */
-        const dist = maxDim * scale * 2.2;
-        camera.position.set(0, size.y * scale * 0.15, dist);
-        controls.target.set(0, 0, 0);
-        controls.update();
-
-        /* 로딩 완료 */
-        loadingEl.style.opacity = '0';
-      },
-      (progress) => {
-        if (progress.total > 0) {
-          const pct = Math.round(progress.loaded / progress.total * 100);
-          loadingEl.textContent = `Loading... ${pct}%`;
-        }
-      },
-      (err) => {
-        console.error('GLB load error:', err);
-        loadingEl.textContent = '3D 모델을 불러올 수 없습니다.';
-      }
-    );
-
-    /* Animation loop */
-    function animate() {
-      requestAnimationFrame(animate);
-      controls.update();
-      renderer.render(scene, camera);
-    }
-    animate();
-  </script>
+  <!-- 모듈 섹션 -->
+  <div class="module-section reveal">
+    <p class="module-title">간편하게 조립 가능한<br>모듈 교체 구조</p>
+    <img class="module-head-img"
+         src="assets/images/detail shot/gromi/gromi-module-1.png"
+         alt="Gromi Module">
+    <div class="module-desc">
+      <p class="module-desc-label">테이블탑 전용 하단 모듈 결합 형태</p>
+      <p class="module-desc-body">네 개의 바퀴가 달린 하단 모듈을 결합하여<br>테이블탑 로봇으로 사용할 수 있습니다.</p>
+      <svg class="module-arrow" viewBox="0 0 385 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 42 C80 42 120 6 192 6 C264 6 305 42 383 42" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M374 34 L383 42 L374 50" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+  </div>
 
   <script>
     /* ── 반응형 zoom ── */
@@ -667,6 +692,87 @@
     }
     window.addEventListener('resize', applyZoom);
     applyZoom();
+
+    /* ── 시나리오 데이터 ── */
+    const scenarios = [
+      {
+        num: '1', label: 'Grow',
+        img: 'assets/images/scenario-gromi/scenario-gromi-1.png',
+        alt: 'Gromi Scenario 1',
+        desc: '아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.'
+      },
+      {
+        num: '2', label: 'Play',
+        img: 'assets/images/scenario-gromi/scenario-gromi-2.png',
+        alt: 'Gromi Scenario 2',
+        desc: '오전 10시, 유치원에서 돌아온 준호가 GROMI를 찾아 거실로 달려옵니다. GROMI는 준호의 기분을 감지하고 오늘의 놀이를 제안합니다.<br>공 굴리기, 장애물 피하기, 리듬 따라하기. 아이의 웃음소리가 집 안 가득 퍼지는 동안 GROMI는 준호의 운동 능력과 반응 속도를 자연스럽게 기록합니다.'
+      },
+      {
+        num: '3', label: 'Communication',
+        img: 'assets/images/scenario-gromi/scenario-gromi-3.png',
+        alt: 'Gromi Scenario 3',
+        desc: '저녁 6시, 퇴근 전 부모가 GROMI를 통해 아이와 연결됩니다. 아이는 GROMI의 화면으로 엄마 얼굴을 보며 오늘 있었던 일을 신나게 이야기합니다.<br>GROMI는 대화를 바탕으로 아이의 언어 발달 수준과 정서 상태를 파악하고 부모에게 요약 리포트를 전달합니다.'
+      },
+      {
+        num: '4', label: 'Care',
+        img: 'assets/images/scenario-gromi/scenario-gromi-4.png',
+        alt: 'Gromi Scenario 4',
+        desc: '밤 8시, 아이가 잠들기 전 GROMI와 함께 취침 루틴을 시작합니다. GROMI는 오늘의 활동량과 심박수 변화를 바탕으로 수면 준비 상태를 분석하고 차분한 음악과 함께 수면을 유도합니다.<br>부모는 앱을 통해 아이의 일일 건강 리포트를 확인합니다.'
+      }
+    ];
+
+    /* ── 탭 전환 ── */
+    const tabItems = document.querySelectorAll('.gromi-sc .tab-item');
+    const scenarioImg = document.getElementById('scenario-img');
+    const scenarioNum = document.getElementById('scenario-num');
+    const scenarioLabel = document.getElementById('scenario-label');
+    const scenarioDesc = document.getElementById('scenario-desc');
+    const transitionEls = document.querySelectorAll('.scenario-transition');
+
+    tabItems.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const idx = parseInt(tab.dataset.tab);
+        if (tab.classList.contains('active')) return;
+
+        // 탭 활성화
+        tabItems.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // 이미지 + 텍스트 함께 fade out
+        transitionEls.forEach(el => el.classList.add('fade-out'));
+
+        setTimeout(() => {
+          // 콘텐츠 교체
+          const s = scenarios[idx];
+          scenarioImg.src = s.img;
+          scenarioImg.alt = s.alt;
+          scenarioNum.textContent = s.num;
+          scenarioLabel.textContent = s.label;
+          scenarioDesc.innerHTML = s.desc;
+
+          // fade in
+          transitionEls.forEach(el => el.classList.remove('fade-out'));
+        }, 350);
+      });
+    });
+
+    /* ── 헤더 스크롤 숨김/표시 ── */
+    const stickyHeader = document.querySelector('.sticky-header');
+    let lastScrollY = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < lastScrollY) {
+        /* 위로 스크롤 → 헤더 표시 */
+        stickyHeader.style.top = '0';
+      } else if (currentScrollY > 177) {
+        /* 아래로 스크롤 & 헤더 높이 지난 뒤 → 헤더 숨김 */
+        stickyHeader.style.top = '-177px';
+      }
+
+      lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+    }, { passive: true });
 
     /* ── Scroll Reveal ── */
     const observer = new IntersectionObserver((entries) => {
