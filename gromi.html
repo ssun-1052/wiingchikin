@@ -147,10 +147,20 @@
     .feature-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
     .feature-card-title { position: relative; z-index: 1; padding: 60px 0; text-align: center; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; white-space: nowrap; }
 
-    /* ── DETAIL END SECTION (gromi-detail-1.png) ── */
-    .detail-end-section { position: relative; width: 1920px; overflow: hidden; }
-    .detail-end-section img { width: 100%; display: block; }
-    .detail-end-text { position: absolute; left: 110px; top: 100px; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; }
+    /* ── WALKER SECTION ── */
+    .walker-section { position: relative; width: 1920px; height: 1658px; overflow: hidden; }
+    .walker-section > img { position: absolute; left: -170px; top: 0; width: 2280px; height: 100%; object-fit: cover; display: block; }
+    .walker-section-label { position: absolute; left: 110px; top: 100px; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; }
+    .walker-callout { position: absolute; display: flex; flex-direction: column; gap: 8px; }
+    .walker-callout-title { font-family: var(--font-pretendard); font-weight: 700; font-size: 28px; line-height: 1.5; letter-spacing: -0.28px; color: #1c1e22; white-space: nowrap; }
+    .walker-callout-desc { font-family: var(--font-pretendard); font-weight: 400; font-size: 18px; line-height: 1.5; letter-spacing: -0.18px; color: #5a5d6b; }
+    .walker-arrow { display: block; overflow: visible; }
+    .walker-footnote { position: absolute; bottom: 157px; left: 1548px; font-family: var(--font-pretendard); font-weight: 500; font-size: 12px; line-height: 1.4; letter-spacing: -0.12px; color: #86888e; white-space: pre-wrap; }
+
+    /* ── RIDING SECTION ── */
+    .riding-label { width: 1920px; padding: 50px 110px; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; }
+    .riding-image-section { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+    .riding-image-section img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -315,10 +325,52 @@
     </div>
   </div>
 
-  <!-- DETAIL END: gromi-detail-1.png -->
-  <div class="detail-end-section reveal">
-    <img src="assets/images/Gromi_web/gromi-detail-1.png" alt="Gromi Walker">
-    <p class="detail-end-text">보행 데이터를 수집하는<br>보행기 모드</p>
+  <!-- WALKER SECTION -->
+  <div class="walker-section reveal">
+    <img src="assets/images/Gromi_web/gromi-walker.png" alt="Gromi Walker mode">
+
+    <p class="walker-section-label">보행 데이터를 수집하는<br>보행기 모드</p>
+
+    <!-- Callout 1: 자유롭게 돌아가는 헤드 모듈 (우측, top:278) -->
+    <div class="walker-callout" style="top:278px; left:1340px; width:375px;">
+      <p class="walker-callout-title">자유롭게 돌아가는 헤드 모듈</p>
+      <p class="walker-callout-desc">보행기 몸체에 결합된 헤드 모듈은 자유롭게 회전이 가능하여, 아이의 얼굴을 보고 커뮤니케이션하거나 엄마에게 정보를 전달하는 역할을 동시에 수행합니다.</p>
+      <svg class="walker-arrow" width="172" height="54" viewBox="0 0 172 54" fill="none">
+        <path d="M172 2 C120 2 60 52 2 52" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M8 44 L2 52 L12 54" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- Callout 2: 부드러운 소재와 형태감 (좌측, top:595) -->
+    <div class="walker-callout" style="top:595px; left:151px; width:315px;">
+      <p class="walker-callout-title">부드러운 소재와 형태감</p>
+      <p class="walker-callout-desc">아이가 부딪혀 다치지 않도록 제품 전반에 둥글고 부드러운 형태와 소재를 채택했습니다.</p>
+      <svg class="walker-arrow" width="131" height="46" viewBox="0 0 131 46" fill="none" style="margin-left:140px;">
+        <path d="M0 44 C40 44 100 2 129 2" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M123 10 L129 2 L119 0" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- Callout 3: 보행 데이터 자동 수집 (좌측, top:1309) -->
+    <div class="walker-callout" style="top:1309px; left:151px; width:625px;">
+      <p class="walker-callout-title">보행 데이터 자동 수집<sup style="font-size:18px;">1</sup></p>
+      <p class="walker-callout-desc">헤드 모듈 및 몸체에 내장된 센서를 통해 보행 좌우 균형 지수, 걸음 수 등 보행 데이터를 수집합니다.</p>
+      <svg class="walker-arrow" width="263" height="46" viewBox="0 0 263 46" fill="none" style="margin-left:362px;">
+        <path d="M0 44 C80 44 200 2 261 2" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M255 10 L261 2 L251 0" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- 각주 -->
+    <p class="walker-footnote">1. 마커리스 포즈 추정 기술 및 보행 패턴 분석 기술
+Anderson et al., Frontiers in Digital Health, 2025
+DOI: 10.3389/fdgth.2025.1542012 (PubMed 등재)</p>
+  </div>
+
+  <!-- RIDING MODE -->
+  <p class="riding-label reveal">타고 놀 수 있는<br>라이딩 모드</p>
+  <div class="riding-image-section reveal">
+    <img src="assets/images/Gromi_web/gromi-rideable.png" alt="Gromi Riding mode">
   </div>
 
   <script>
