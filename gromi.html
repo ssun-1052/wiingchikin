@@ -374,7 +374,6 @@
       background: #1a1c1d;
       color: white;
       padding: 12px 26px;
-      width: 138px;
       text-align: center;
     }
 
@@ -385,6 +384,15 @@
       gap: 43px;
       align-items: flex-end;
       width: 100%;
+      overflow: hidden; /* 슬라이드 클리핑 */
+    }
+    .scenario-slide {
+      display: flex;
+      flex-direction: column;
+      gap: 43px;
+      width: 1818px;
+      flex-shrink: 0;
+      will-change: transform, opacity;
     }
     .scenario-image {
       position: relative;
@@ -448,14 +456,6 @@
       width: 1128px;
     }
 
-    /* 시나리오 전환 애니메이션 */
-    .scenario-transition {
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-    .scenario-transition.fade-out {
-      opacity: 0;
-      transform: translateY(10px);
-    }
 
     /* ── ERGONOMIC SECTION ── */
     .ergonomic-section {
@@ -646,15 +646,17 @@
     </div>
     <!-- 콘텐츠 -->
     <div class="scenario-content reveal">
-      <div class="scenario-image scenario-transition">
-        <img id="scenario-img" src="assets/images/scenario-gromi/scenario-gromi-1.png" alt="Gromi Scenario 1">
-      </div>
-      <div class="scenario-footer scenario-transition">
-        <div class="scenario-label">
-          <div class="scenario-num" id="scenario-num">1</div>
-          <span class="scenario-label-text" id="scenario-label">Grow</span>
+      <div class="scenario-slide" id="scenario-slide">
+        <div class="scenario-image">
+          <img id="scenario-img" src="assets/images/scenario-gromi/scenario-gromi-1.png" alt="Gromi Scenario 1">
         </div>
-        <p class="scenario-desc" id="scenario-desc">아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.</p>
+        <div class="scenario-footer">
+          <div class="scenario-label">
+            <div class="scenario-num" id="scenario-num">1</div>
+            <span class="scenario-label-text" id="scenario-label">Grow</span>
+          </div>
+          <p class="scenario-desc" id="scenario-desc">아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -721,37 +723,61 @@
       }
     ];
 
-    /* ── 탭 전환 ── */
+    /* ── 탭 전환 (카드뉴스 슬라이드) ── */
     const tabItems = document.querySelectorAll('.gromi-sc .tab-item');
-    const scenarioImg = document.getElementById('scenario-img');
-    const scenarioNum = document.getElementById('scenario-num');
+    const scenarioImg   = document.getElementById('scenario-img');
+    const scenarioNum   = document.getElementById('scenario-num');
     const scenarioLabel = document.getElementById('scenario-label');
-    const scenarioDesc = document.getElementById('scenario-desc');
-    const transitionEls = document.querySelectorAll('.scenario-transition');
+    const scenarioDesc  = document.getElementById('scenario-desc');
+    const slide = document.getElementById('scenario-slide');
+
+    let currentIdx  = 0;
+    let isAnimating = false;
+
+    function setSlideStyle(tx, opacity, withTransition) {
+      slide.style.transition = withTransition
+        ? 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s ease'
+        : 'none';
+      slide.style.transform = `translateX(${tx}px)`;
+      slide.style.opacity   = opacity;
+    }
 
     tabItems.forEach(tab => {
       tab.addEventListener('click', () => {
         const idx = parseInt(tab.dataset.tab);
-        if (tab.classList.contains('active')) return;
+        if (idx === currentIdx || isAnimating) return;
+        isAnimating = true;
 
-        // 탭 활성화
-        tabItems.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+        /* 방향: 오른쪽 탭이면 왼쪽으로 나가고 오른쪽에서 들어옴 */
+        const dir = idx > currentIdx ? -1 : 1; // 나가는 방향 오프셋 부호
 
-        // 이미지 + 텍스트 함께 fade out
-        transitionEls.forEach(el => el.classList.add('fade-out'));
+        /* 1단계: 현재 슬라이드 나가기 */
+        setSlideStyle(dir * 80, '0', true);
 
         setTimeout(() => {
-          // 콘텐츠 교체
+          /* 2단계: 콘텐츠 교체 + 반대편 시작 위치로 순간 이동 */
           const s = scenarios[idx];
-          scenarioImg.src = s.img;
-          scenarioImg.alt = s.alt;
+          scenarioImg.src         = s.img;
+          scenarioImg.alt         = s.alt;
           scenarioNum.textContent = s.num;
           scenarioLabel.textContent = s.label;
-          scenarioDesc.innerHTML = s.desc;
+          scenarioDesc.innerHTML  = s.desc;
 
-          // fade in
-          transitionEls.forEach(el => el.classList.remove('fade-out'));
+          setSlideStyle(-dir * 80, '0', false); // transition 없이 반대편으로
+          slide.offsetWidth; // reflow → transition 분리
+
+          /* 3단계: 새 슬라이드 들어오기 */
+          setSlideStyle(0, '1', true);
+
+          /* 탭 활성화 */
+          tabItems.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentIdx = idx;
+
+          setTimeout(() => {
+            isAnimating = false;
+            slide.style.transition = '';
+          }, 440);
         }, 350);
       });
     });
