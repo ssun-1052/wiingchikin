@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>Wiing Chickin - Galaxy Egg</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Samsung Sharp Sans';
+      src: url('fonts/samsungsharpsans-bold.otf') format('opentype');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'Aeonik';
+      src: url('fonts/Aeonik Medium.otf') format('opentype');
+      font-weight: 500;
+    }
+
+    html { overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #0081e8;
+      --blue-hover: #3ca8fd;
+      --bg-light: #edf3f8;
+      --dark: #2a2d35;
+      --body-text: #5a5d6b;
+      --font-sharp: 'Samsung Sharp Sans', 'Arial Black', sans-serif;
+      --font-aeonik: 'Aeonik', sans-serif;
+      --font-pretendard: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+    }
+
+    body { background: var(--bg-light); font-family: var(--font-pretendard); width: 1920px; }
+
+    .sticky-header { position: sticky; top: -177px; z-index: 100; width: 1920px; transition: top 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+    header { background: white; width: 1920px; height: 177px; display: flex; align-items: center; padding: 0 50px; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; width: 1820px; }
+    nav { display: flex; gap: 50px; align-items: center; }
+    .nav-item { position: relative; font-family: var(--font-aeonik); font-weight: 500; font-size: 26px; letter-spacing: -0.52px; line-height: 1; color: var(--blue); text-transform: capitalize; text-decoration: none; cursor: pointer; transition: color 0.2s ease; }
+    .nav-item::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 100%; height: 1.5px; background: var(--blue-hover); transform: scaleX(0); transform-origin: left; transition: transform 0.2s ease; }
+    .nav-item:hover { color: var(--blue-hover); }
+    .nav-item:hover::after { transform: scaleX(1); }
+    .logo { position: relative; width: 128px; height: 77px; flex-shrink: 0; cursor: pointer; text-decoration: none; }
+    .logo-bg-top { position: absolute; top: 0; left: 0; width: 102px; height: 39px; background: var(--blue); }
+    .logo-bg-bottom { position: absolute; top: 38px; left: 0; width: 128px; height: 39px; background: var(--blue); }
+    .logo-text { position: absolute; top: 2.71px; left: 5.42px; font-family: var(--font-aeonik); font-weight: 500; font-size: 35.208px; line-height: 1; letter-spacing: -0.7042px; color: white; text-transform: capitalize; white-space: nowrap; }
+    .header-right { position: relative; width: 196.291px; height: 41px; flex-shrink: 0; }
+    .header-right .union-icon { position: absolute; left: 0; top: 0; width: 38px; height: 41px; }
+    .header-right .x-icon { position: absolute; left: 54.01px; top: 12.22px; width: 17.846px; height: 17.846px; }
+    .header-right .samsung-logo-img { position: absolute; left: 87.64px; top: 12.91px; width: 108.648px; height: 17.15px; }
+
+    .product-title-bar { background: #f5f9fc; width: 1920px; height: 104px; display: flex; align-items: center; padding: 26px 57px; }
+    .product-title-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .product-title-text { font-family: var(--font-aeonik); font-weight: 500; font-size: 52.571px; letter-spacing: -1.0514px; line-height: 1; color: #000; text-transform: capitalize; white-space: nowrap; }
+    .buy-btn { display: flex; align-items: center; justify-content: center; background: #1d2023; border-radius: 42px; padding: 10px 24px; font-family: var(--font-pretendard); font-weight: 500; font-size: 30px; letter-spacing: -0.6px; line-height: 1; color: white; border: none; cursor: pointer; transition: opacity 0.2s; }
+    .buy-btn:hover { opacity: 0.8; }
+
+    .title-section { width: 1920px; height: 839px; background: #797979; }
+
+    .intro-section { width: 1920px; padding: 120px 550px; display: flex; flex-direction: column; align-items: center; gap: 65px; text-align: center; }
+    .intro-heading { font-family: var(--font-pretendard); font-size: 80px; line-height: 1.35; letter-spacing: -1.6px; color: var(--dark); }
+    .intro-heading strong { font-weight: 700; }
+    .intro-heading span { font-weight: 500; }
+    .intro-body { font-family: var(--font-pretendard); font-weight: 500; font-size: 32px; line-height: 1.45; letter-spacing: -0.32px; color: var(--body-text); width: 818px; }
+
+    .research-section { width: 1920px; background: #16181c; }
+    .research-slide { width: 1920px; height: 1080px; position: relative; display: flex; flex-direction: column; align-items: center; padding: 96px 100px 100px; }
+    .research-slide-title { font-family: var(--font-pretendard); font-weight: 600; font-size: 60px; line-height: 1.4; letter-spacing: -0.66px; color: white; text-align: center; }
+    .quotes-area { position: absolute; bottom: 100px; left: 100px; right: 100px; display: flex; align-items: flex-end; justify-content: space-between; gap: 60px; }
+    .quote-with-person { display: flex; align-items: flex-end; gap: 32px; }
+    .quote-with-person.flip { flex-direction: row-reverse; }
+    .quote-person { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0; }
+    .quote-avatar { width: 90px; height: 90px; background: #4a4f5c; border-radius: 50%; }
+    .quote-name { font-family: var(--font-pretendard); font-weight: 500; font-size: 24px; color: rgba(255,255,255,0.8); line-height: 1.4; letter-spacing: -0.264px; white-space: nowrap; }
+    .quote-bubble { backdrop-filter: blur(10.65px); background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.6); border-radius: 30px 30px 30px 4px; padding: 40px 48px; font-family: var(--font-pretendard); font-weight: 600; font-size: 28px; line-height: 1.5; letter-spacing: -0.308px; color: white; }
+    .quote-bubble.right-tail { border-radius: 30px 30px 4px 30px; }
+
+    .modeling-section { width: 1920px; height: 1045px; background: white; display: flex; align-items: center; justify-content: center; }
+    .modeling-placeholder { width: 1680px; height: 840px; background: #d9d9d9; border-radius: 30px; }
+
+    .product-goal-section { width: 1920px; padding: 120px 362px; display: flex; flex-direction: column; align-items: center; gap: 65px; text-align: center; }
+    .goal-heading { font-family: var(--font-pretendard); font-weight: 500; font-size: 80px; line-height: 1.35; letter-spacing: -1.6px; color: var(--dark); }
+    .goal-body { font-family: var(--font-pretendard); font-weight: 500; font-size: 32px; line-height: 1.45; letter-spacing: -0.32px; color: var(--body-text); }
+
+    .scenario-section { width: 1920px; padding: 160px 50px; display: flex; flex-direction: column; gap: 65px; align-items: center; }
+    .tab-bar { display: flex; align-items: center; justify-content: space-between; background: white; border-radius: 71px; padding: 12px 47px 12px 18px; flex-shrink: 0; }
+    .tab-item { font-family: var(--font-aeonik); font-weight: 500; font-size: 36px; letter-spacing: -0.72px; line-height: 1; text-transform: capitalize; color: #9fbad0; cursor: pointer; border-radius: 44px; transition: background 0.2s, color 0.2s; white-space: nowrap; }
+    .tab-item.active { background: #1a1c1d; color: white; padding: 12px 26px; }
+    .scenario-content { display: flex; flex-direction: column; gap: 43px; align-items: flex-end; width: 100%; }
+    .scenario-image { width: 1818px; height: 1021px; border-radius: 30px; background: #d9d9d9; }
+    .scenario-footer { display: flex; align-items: flex-start; justify-content: space-between; width: 1818px; }
+    .scenario-label { display: flex; align-items: center; gap: 16px; }
+    .scenario-num { display: flex; align-items: center; justify-content: center; width: 58.172px; padding: 5.769px 24.23px; background: #2a2a2a; border-radius: 40.384px; font-family: var(--font-aeonik); font-weight: 500; font-size: 46.153px; letter-spacing: -0.4615px; color: white; line-height: 1; text-align: center; }
+    .scenario-label-text { font-family: var(--font-sharp); font-weight: 700; font-size: 70px; letter-spacing: -0.7px; color: #2a2a2a; line-height: 1; white-space: nowrap; }
+    .scenario-desc { font-family: var(--font-pretendard); font-weight: 500; font-size: 24px; line-height: 1.4; letter-spacing: -0.24px; color: #6c6c77; width: 1128px; }
+
+    .ergonomic-section { width: 1920px; padding: 120px 362px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .ergonomic-heading { font-family: var(--font-pretendard); font-weight: 500; font-size: 80px; line-height: 1.35; letter-spacing: -1.6px; color: var(--dark); }
+
+    .visual-section { width: 1920px; height: 1080px; background: #797979; }
+
+    .module-section { position: relative; width: 1920px; height: 1060px; background: var(--bg-light); overflow: hidden; }
+    .module-title { position: absolute; left: 110px; top: 122px; font-family: var(--font-pretendard); font-weight: 700; font-size: 42px; line-height: 1.35; letter-spacing: -0.462px; color: #1c1e22; white-space: pre-line; }
+    .module-placeholder { position: absolute; right: 0; top: 0; width: 1081px; height: 1060px; background: #d9d9d9; }
+
+    .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <div class="sticky-header">
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-bg-top"></div>
+          <div class="logo-bg-bottom"></div>
+          <div class="logo-text">Wiing<br>chickin</div>
+        </a>
+        <nav>
+          <a href="product.html" class="nav-item">Product</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="#" class="nav-item">Credits</a>
+        </nav>
+        <div class="header-right">
+          <img class="union-icon" src="assets/icons/union.svg" alt="">
+          <img class="x-icon"     src="assets/icons/x.svg" alt="">
+          <img class="samsung-logo-img" src="assets/icons/logo.png" alt="Samsung">
+        </div>
+      </div>
+    </header>
+    <div class="product-title-bar">
+      <div class="product-title-inner">
+        <span class="product-title-text">Galaxy Egg</span>
+        <button class="buy-btn">구매하기</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="title-section"></div>
+
+  <section class="intro-section reveal">
+    <h1 class="intro-heading">
+      <span>나를 알아주는 </span><strong>갤럭시 워치</strong>
+    </h1>
+    <p class="intro-body">내 곁에 있는 에그 컴패니언, 취향을 공유하세요.</p>
+  </section>
+
+  <div class="research-section">
+    <div class="research-slide">
+      <p class="research-slide-title">일상 중 낮은 착용 비율의<br>갤럭시 워치</p>
+      <div class="quotes-area">
+        <div class="quote-with-person">
+          <div class="quote-person">
+            <div class="quote-avatar"></div>
+            <span class="quote-name">팀원 윤*빈</span>
+          </div>
+          <div class="quote-bubble">
+            집에서는 안 써서 충전만 해두는 것 같아요.<br>
+            밖에 나갈 때만 차는게 아쉽긴 해요.
+          </div>
+        </div>
+        <div class="quote-with-person flip">
+          <div class="quote-person">
+            <div class="quote-avatar"></div>
+            <span class="quote-name">동료 피드백</span>
+          </div>
+          <div class="quote-bubble right-tail">
+            솔직히 갤럭시워치 충전 안 한지 좀 오래 됐어요.<br>
+            기능은 별로 안 쓰니까 그냥 패션용으로 차고 다니는거죠.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modeling-section reveal">
+    <div class="modeling-placeholder"></div>
+  </div>
+
+  <section class="product-goal-section reveal">
+    <h2 class="goal-heading">취향 가득 일상을 채우는<br>완벽한 반려 컴패니언</h2>
+    <p class="goal-body">Galaxy Egg는 갤럭시 워치와 연동해 나만의 취향을 기억하고<br>일상 속 작은 순간들을 함께하는 컴패니언입니다.</p>
+  </section>
+
+  <section class="scenario-section">
+    <div class="tab-bar reveal" style="width: 843px;">
+      <div class="tab-item active" data-tab="0">Communication</div>
+      <div class="tab-item" data-tab="1">Continue</div>
+      <div class="tab-item" data-tab="2">Sync</div>
+      <div class="tab-item" data-tab="3">Bond</div>
+    </div>
+    <div class="scenario-content reveal">
+      <div class="scenario-image"></div>
+      <div class="scenario-footer">
+        <div class="scenario-label">
+          <div class="scenario-num" id="scenario-num">1</div>
+          <span class="scenario-label-text" id="scenario-label">Communication</span>
+        </div>
+        <p class="scenario-desc" id="scenario-desc">
+          저녁 9시, 소파에 앉은 지수의 갤럭시 워치가 스트레스 지수를 감지합니다. 에그는 지수가 좋아하는 아티스트의 플레이리스트를 틀고 따뜻한 조명으로 주변을 바꿉니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ergonomic-section reveal">
+    <h2 class="ergonomic-heading">한 손에 담기는<br>컴팩트한 사이즈</h2>
+  </section>
+
+  <div class="visual-section"></div>
+
+  <div class="module-section reveal">
+    <p class="module-title">간편하게 조립 가능한<br>모듈 교체 구조</p>
+    <div class="module-placeholder"></div>
+  </div>
+
+  <script>
+    function applyZoom() {
+      document.documentElement.style.zoom = window.innerWidth / 1920;
+    }
+    window.addEventListener('resize', applyZoom);
+    applyZoom();
+
+    const tabLabels = ['Communication', 'Continue', 'Sync', 'Bond'];
+    const tabEls = document.querySelectorAll('.tab-item');
+    const numEl = document.getElementById('scenario-num');
+    const labelEl = document.getElementById('scenario-label');
+
+    tabEls.forEach((tab, i) => {
+      tab.addEventListener('click', () => {
+        tabEls.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        numEl.textContent = i + 1;
+        labelEl.textContent = tabLabels[i];
+      });
+    });
+
+    const stickyHeader = document.querySelector('.sticky-header');
+    let lastScrollY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < lastScrollY) stickyHeader.style.top = '0';
+      else if (y > 177) stickyHeader.style.top = '-177px';
+      lastScrollY = y <= 0 ? 0 : y;
+    }, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+        else entry.target.classList.remove('in-view');
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
