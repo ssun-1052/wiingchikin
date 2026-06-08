@@ -7,233 +7,129 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'Samsung Sharp Sans';
-      src: url('fonts/samsungsharpsans-bold.otf') format('opentype');
-      font-weight: 700;
-    }
-    @font-face {
-      font-family: 'Samsung Sharp Sans';
-      src: url('fonts/samsungsharpsans-medium.otf') format('opentype');
-      font-weight: 500;
-    }
-    @font-face {
-      font-family: 'Aeonik';
-      src: url('fonts/Aeonik Medium.otf') format('opentype');
-      font-weight: 500;
-    }
+    @font-face { font-family:'Samsung Sharp Sans'; src:url('fonts/samsungsharpsans-bold.otf') format('opentype'); font-weight:700; }
+    @font-face { font-family:'Samsung Sharp Sans'; src:url('fonts/samsungsharpsans-medium.otf') format('opentype'); font-weight:500; }
+    @font-face { font-family:'Aeonik'; src:url('fonts/Aeonik Medium.otf') format('opentype'); font-weight:500; }
 
-    html { overflow-x: hidden; }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x:hidden; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 
     :root {
-      --blue: #0081e8;
-      --blue-hover: #3ca8fd;
-      --bg-light: #edf3f8;
-      --dark: #2a2d35;
-      --body-text: #5a5d6b;
-      --font-sharp: 'Samsung Sharp Sans', 'Arial Black', sans-serif;
-      --font-aeonik: 'Aeonik', sans-serif;
-      --font-pretendard: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+      --blue:#0081e8; --blue-hover:#3ca8fd; --bg-light:#edf3f8;
+      --font-sharp:'Samsung Sharp Sans','Arial Black',sans-serif;
+      --font-aeonik:'Aeonik',sans-serif;
+      --font-pretendard:'Pretendard Variable','Pretendard',-apple-system,sans-serif;
     }
 
-    body { background: var(--bg-light); font-family: var(--font-pretendard); width: 1920px; }
+    body { background:var(--bg-light); font-family:var(--font-pretendard); width:1920px; }
 
-    /* HEADER */
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: white; width: 1920px; height: 177px;
-      display: flex; align-items: center; padding: 0 50px;
-    }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; width: 1820px; }
-    nav { display: flex; gap: 50px; align-items: center; }
-    .nav-item {
-      position: relative; font-family: var(--font-aeonik); font-weight: 500;
-      font-size: 26px; letter-spacing: -0.52px; line-height: 1;
-      color: var(--blue); text-transform: capitalize; text-decoration: none;
-      cursor: pointer; transition: color 0.2s ease;
-    }
-    .nav-item::after {
-      content: ''; position: absolute; left: 0; bottom: -4px;
-      width: 100%; height: 1.5px; background: var(--blue-hover);
-      transform: scaleX(0); transform-origin: left; transition: transform 0.2s ease;
-    }
-    .nav-item:hover { color: var(--blue-hover); }
-    .nav-item:hover::after { transform: scaleX(1); }
-    .nav-item.active { font-weight: 700; }
-    .logo { position: relative; width: 128px; height: 77px; flex-shrink: 0; cursor: pointer; text-decoration: none; }
-    .logo-bg-top { position: absolute; top: 0; left: 0; width: 102px; height: 39px; background: var(--blue); }
-    .logo-bg-bottom { position: absolute; top: 38px; left: 0; width: 128px; height: 39px; background: var(--blue); }
-    .logo-text { position: absolute; top: 2.71px; left: 5.42px; font-family: var(--font-aeonik); font-weight: 500; font-size: 35.208px; line-height: 1; letter-spacing: -0.7042px; color: white; text-transform: capitalize; white-space: nowrap; }
-    .header-right { position: relative; width: 196.291px; height: 41px; flex-shrink: 0; }
-    .header-right .union-icon { position: absolute; left: 0; top: 0; width: 38px; height: 41px; }
-    .header-right .x-icon { position: absolute; left: 54.01px; top: 12.22px; width: 17.846px; height: 17.846px; }
-    .header-right .samsung-logo-img { position: absolute; left: 87.64px; top: 12.91px; width: 108.648px; height: 17.15px; }
+    /* ── HEADER ── */
+    header { position:sticky; top:0; z-index:100; background:white; width:1920px; height:177px; display:flex; align-items:center; padding:0 50px; }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; width:1820px; }
+    nav { display:flex; gap:50px; align-items:center; }
+    .nav-item { position:relative; font-family:var(--font-aeonik); font-weight:500; font-size:26px; letter-spacing:-.52px; line-height:1; color:var(--blue); text-transform:capitalize; text-decoration:none; cursor:pointer; transition:color .2s; }
+    .nav-item::after { content:''; position:absolute; left:0; bottom:-4px; width:100%; height:1.5px; background:var(--blue-hover); transform:scaleX(0); transform-origin:left; transition:transform .2s; }
+    .nav-item:hover { color:var(--blue-hover); }
+    .nav-item:hover::after { transform:scaleX(1); }
+    .nav-item.active { font-weight:700; }
+    .logo { position:relative; width:128px; height:77px; flex-shrink:0; cursor:pointer; text-decoration:none; }
+    .logo-bg-top { position:absolute; top:0; left:0; width:102px; height:39px; background:var(--blue); }
+    .logo-bg-bottom { position:absolute; top:38px; left:0; width:128px; height:39px; background:var(--blue); }
+    .logo-text { position:absolute; top:2.71px; left:5.42px; font-family:var(--font-aeonik); font-weight:500; font-size:35.208px; line-height:1; letter-spacing:-.7042px; color:white; text-transform:capitalize; white-space:nowrap; }
+    .header-right { position:relative; width:196.291px; height:41px; flex-shrink:0; }
+    .header-right .union-icon { position:absolute; left:0; top:0; width:38px; height:41px; }
+    .header-right .x-icon { position:absolute; left:54.01px; top:12.22px; width:17.846px; height:17.846px; }
+    .header-right .samsung-logo-img { position:absolute; left:87.64px; top:12.91px; width:108.648px; height:17.15px; }
 
-    /* PAGE HEADING */
-    .page-heading-section { padding: 84px 50px 50px; width: 1920px; }
-    .page-heading-row { display: flex; align-items: flex-end; width: 1820px; padding-bottom: 19px; }
-    .page-heading {
-      font-family: var(--font-sharp); font-weight: 700;
-      font-size: 120px; letter-spacing: -2.4px; line-height: 0.9;
-      color: #d9e5f0; text-transform: capitalize; white-space: nowrap;
-    }
+    /* ── PAGE HEADING ── */
+    .page-heading-wrap { padding:84px 50px 50px; width:1920px; }
+    .page-heading { font-family:var(--font-sharp); font-weight:700; font-size:120px; letter-spacing:-2.4px; line-height:.9; color:#d9e5f0; text-transform:capitalize; white-space:nowrap; }
 
-    /* HERO SECTION */
-    .about-hero {
-      width: 1920px;
-      padding: 120px 550px;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 65px;
-      text-align: center;
-    }
-    .about-graphic {
-      width: 1160px; height: 417px;
-      background: #d9e5f0; border-radius: 20px;
-      flex-shrink: 0;
-    }
-    .about-hero-title {
-      font-family: var(--font-sharp); font-weight: 700;
-      font-size: 100px; line-height: 1.2; letter-spacing: -2px;
-      color: #00c3ff;
-    }
-    .about-hero-subtitle {
-      font-family: var(--font-pretendard); font-weight: 500;
-      font-size: 32px; line-height: 1.45; letter-spacing: -0.32px;
-      color: var(--body-text);
-    }
+    /* ── HERO SECTION ── */
+    .about-hero { width:1920px; padding:160px 326px; display:flex; flex-direction:column; align-items:center; gap:65px; text-align:center; }
+    .about-2036 { width:1160px; height:417.5px; flex-shrink:0; overflow:hidden; }
+    .about-2036 img { width:100%; height:100%; object-fit:cover; display:block; }
+    .about-hero-title { font-family:var(--font-sharp); font-weight:700; font-size:100px; line-height:1.2; letter-spacing:-2px; color:#00c3ff; }
+    .about-hero-sub { font-family:var(--font-pretendard); font-weight:500; font-size:32px; line-height:1.45; letter-spacing:-.32px; color:#5a5d6b; }
 
-    /* VISION SECTION (dark) */
+    /* ── DARK SECTION ── */
+    .about-dark { position:relative; width:1920px; background:#000; overflow:hidden; }
+
+    /* Ellipse 30523 glow */
+    .ellipse-glow-wrap {
+      position:absolute;
+      left:50%; top:-412px;
+      transform:translateX(-50%);
+      width:2534px; height:2297px;
+      pointer-events:none; z-index:0;
+    }
+    .ellipse-glow-wrap img { width:100%; height:100%; display:block; }
+
+    /* ── VISION ── */
     .vision-section {
-      width: 1920px;
-      background: #000;
-      padding: 80px 0 120px;
+      position:relative; z-index:1;
+      width:1920px; padding:67px 623px;
+      display:flex; flex-direction:column; align-items:center;
+      gap:149px; text-align:center;
     }
-    .vision-label {
-      font-family: var(--font-sharp); font-weight: 500;
-      font-size: 30px; color: rgba(141,149,162,0.7);
-      text-align: center; letter-spacing: -0.3px;
-      padding-top: 80px; margin-bottom: 190px;
-    }
-    .vision-content {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 40px;
-      padding: 0 287px; text-align: center;
-    }
-    .vision-headline {
-      font-family: var(--font-sharp); font-weight: 700;
-      font-size: 70px; letter-spacing: -0.7px;
-      color: white; line-height: 1;
-    }
-    .vision-body {
-      font-family: var(--font-pretendard); font-weight: 600;
-      font-size: 32px; line-height: 1.4; color: rgba(255,255,255,0.9);
-    }
+    .vision-label { font-family:var(--font-sharp); font-weight:500; font-size:30px; letter-spacing:-.3px; color:rgba(141,149,162,.7); white-space:nowrap; }
+    .vision-content { display:flex; flex-direction:column; align-items:center; gap:40px; width:673px; }
+    .vision-headline { font-family:var(--font-sharp); font-weight:700; font-size:70px; letter-spacing:-.7px; color:white; line-height:1; width:100%; }
+    .vision-body { font-family:var(--font-pretendard); font-weight:500; font-size:32px; line-height:1.4; color:rgba(255,255,255,.9); width:100%; }
 
-    /* CATEGORY CARDS (Lives with You / Works for You) */
-    .category-cards-section {
-      padding: 120px 136px 0;
-      display: flex; flex-direction: column; gap: 160px;
+    /* ── CATEGORY BANNER CARDS ── */
+    .category-banners {
+      position:relative; z-index:1;
+      padding:176px 130px;
+      margin-top:0; /* vision section ends ~513px into dark section */
     }
+    .banners-row { display:flex; gap:50px; align-items:flex-start; width:1659px; }
+    .banner-card {
+      position:relative; width:803px; height:659px;
+      border-radius:55px; overflow:hidden;
+      background:#8e8e8e; flex-shrink:0;
+    }
+    .banner-card.offset { margin-top:160px; }
+    .banner-card img.banner-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+    .banner-overlay-top { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,.3) 0%, rgba(0,0,0,0) 60%); }
+    .banner-text { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:71px 109px; color:white; }
+    .banner-title { font-family:var(--font-pretendard); font-weight:700; font-size:100px; line-height:1.2; letter-spacing:-7px; white-space:nowrap; }
+    .banner-sub { font-family:var(--font-pretendard); font-weight:700; font-size:38px; line-height:1.5; letter-spacing:-2.66px; text-align:center; }
 
-    /* Lives with You row */
-    .category-row {
-      display: flex; flex-direction: column; gap: 60px;
+    /* ── PRODUCT ROWS ── */
+    .products-row {
+      position:relative; z-index:1;
+      padding:80px 110px;
+      display:flex; align-items:center;
     }
-    .category-label-row {
-      display: flex; align-items: flex-start; gap: 119px;
-    }
-    .category-label {
-      flex-shrink: 0; width: 476px;
-    }
-    .category-label-title {
-      font-family: var(--font-pretendard); font-weight: 700;
-      font-size: 100px; line-height: 1; letter-spacing: -7px;
-      color: #23cbff; white-space: nowrap;
-    }
-    .category-label-sub {
-      font-family: var(--font-pretendard); font-weight: 600;
-      font-size: 38px; letter-spacing: -2.66px;
-      color: #23cbff; margin-top: 8px; white-space: nowrap;
-    }
-    .category-product-cards {
-      display: flex; gap: 28px; align-items: flex-start;
-    }
-    .product-showcase-card {
-      position: relative;
-      width: 535px; height: 956px;
-      border-radius: 83px; overflow: hidden;
-      background: #d9d9d9;
-      flex-shrink: 0;
-      text-decoration: none;
-      display: block;
-      cursor: pointer;
-    }
-    .product-showcase-card::after {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 83px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5) 100%);
-      pointer-events: none;
-    }
-    .product-showcase-info {
-      position: absolute;
-      bottom: 0; left: 0;
-      padding: 0 62px 70px;
-      color: white; z-index: 1;
-      display: flex; flex-direction: column; gap: 28px;
-    }
-    .product-showcase-name {
-      font-family: var(--font-aeonik); font-weight: 500;
-      font-size: 93px; line-height: 1; letter-spacing: -0.93px;
-      white-space: nowrap;
-    }
-    .product-showcase-name.serif {
-      font-family: var(--font-sharp); font-weight: 700;
-    }
-    .product-showcase-desc {
-      font-family: var(--font-pretendard); font-weight: 600;
-      font-size: 28px; line-height: 1.4; letter-spacing: -0.28px;
-    }
+    .products-row.lives { gap:119px; }
+    .products-row.works { gap:55px; justify-content:space-between; }
 
-    /* Two big banner cards side by side */
-    .big-card-row {
-      display: flex; gap: 0;
-      width: 1659px;
-      margin: 80px 136px 0;
-    }
-    .big-card {
-      position: relative;
-      width: 803px; height: 659px;
-      border-radius: 55px; overflow: hidden;
-      background: #8e8e8e; flex-shrink: 0;
-    }
-    .big-card:last-child { margin-top: 160px; margin-left: 50px; }
-    .big-card::after {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 55px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 60%);
-      pointer-events: none;
-    }
-    .big-card-info {
-      position: absolute; bottom: 0; left: 0;
-      padding: 50px; z-index: 1; color: white;
-    }
-    .big-card-sub {
-      font-family: var(--font-pretendard); font-weight: 700;
-      font-size: 38px; line-height: 1.5; letter-spacing: -2.66px;
-      text-align: center; width: 500px;
-    }
-    .big-card-title {
-      font-family: var(--font-pretendard); font-weight: 700;
-      font-size: 100px; line-height: 1.2; letter-spacing: -7px;
-      white-space: nowrap;
-    }
+    .category-label-block { flex-shrink:0; width:476px; height:200px; position:relative; color:#23cbff; }
+    .category-label-block.works { width:542px; }
+    .cat-title { font-family:var(--font-pretendard); font-weight:700; font-size:100px; line-height:1; letter-spacing:-7px; white-space:nowrap; }
+    .cat-sub { font-family:var(--font-pretendard); font-weight:600; font-size:38px; line-height:1.5; letter-spacing:-2.66px; margin-top:12px; white-space:nowrap; }
 
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
-    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    .product-cards { display:flex; gap:28px; align-items:center; }
+
+    /* Tall product card */
+    .product-card-tall {
+      position:relative; width:534.672px; height:955.957px;
+      border-radius:82.966px; overflow:hidden;
+      background:#2a2a2a; flex-shrink:0;
+      text-decoration:none; display:block; cursor:pointer;
+    }
+    .product-card-tall img.pc-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+    .pc-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.4) 100%); }
+    .pc-info { position:absolute; bottom:0; left:0; padding:0 50px 55px; color:white; display:flex; flex-direction:column; gap:28px; }
+    .pc-name { font-family:var(--font-aeonik); font-weight:500; font-size:92px; line-height:1; letter-spacing:-.92px; white-space:nowrap; }
+    .pc-name.flow-name { display:flex; flex-direction:column; gap:4px; }
+    .pc-name-sm { font-size:26px; letter-spacing:-.26px; font-weight:400; }
+    .pc-desc { font-family:var(--font-pretendard); font-weight:500; font-size:28px; line-height:1.4; letter-spacing:-.28px; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity:0; transform:translateY(48px); transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1); }
+    .reveal.in-view { opacity:1; transform:translateY(0); }
   </style>
 </head>
 <body>
@@ -248,120 +144,143 @@
       </a>
       <nav>
         <a href="product.html" class="nav-item">Product</a>
-        <a href="about.html" class="nav-item active">About</a>
-        <a href="#" class="nav-item">Credits</a>
+        <a href="about.html"   class="nav-item active">About</a>
+        <a href="#"            class="nav-item">Credits</a>
       </nav>
       <div class="header-right">
-        <img class="union-icon" src="assets/icons/union.svg" alt="">
-        <img class="x-icon"     src="assets/icons/x.svg" alt="">
+        <img class="union-icon"       src="assets/icons/union.svg" alt="">
+        <img class="x-icon"           src="assets/icons/x.svg" alt="">
         <img class="samsung-logo-img" src="assets/icons/logo.png" alt="Samsung">
       </div>
     </div>
   </header>
 
   <!-- PAGE HEADING -->
-  <div class="page-heading-section">
-    <div class="page-heading-row">
-      <h1 class="page-heading">About.</h1>
-    </div>
+  <div class="page-heading-wrap">
+    <p class="page-heading">About.</p>
   </div>
 
   <!-- HERO -->
   <section class="about-hero reveal">
-    <div class="about-graphic"></div>
+    <div class="about-2036">
+      <img src="assets/images/About/2036.png" alt="2036">
+    </div>
     <div>
       <p class="about-hero-title">Future of<br>Home Robot &amp; Companion</p>
     </div>
-    <p class="about-hero-subtitle">2036년, 로봇의 미래는 어떤 모습일까요?</p>
+    <p class="about-hero-sub">2036년, 로봇의 미래는 어떤 모습일까요?</p>
   </section>
 
-  <!-- VISION SECTION -->
-  <section class="vision-section">
-    <p class="vision-label">Vision</p>
-    <div class="vision-content reveal">
-      <h2 class="vision-headline">Symbiotic Presence</h2>
-      <p class="vision-body">집에 자연스럽게 스며드는,<br>로봇이 인간과 유대를 맺는 미래를 그립니다.</p>
+  <!-- DARK SECTION -->
+  <section class="about-dark">
+
+    <!-- Ellipse 30523 glow -->
+    <div class="ellipse-glow-wrap">
+      <img src="assets/images/About/ellipse-glow.svg" alt="">
     </div>
 
-    <!-- Two big category banner cards -->
-    <div class="big-card-row reveal">
-      <div class="big-card">
-        <div class="big-card-info">
-          <p class="big-card-title">Lives with You</p>
-          <p class="big-card-sub">사람과 함께하는 로봇</p>
-        </div>
+    <!-- Vision -->
+    <div class="vision-section reveal">
+      <p class="vision-label">Vision</p>
+      <div class="vision-content">
+        <p class="vision-headline">Symbiotic Presence</p>
+        <p class="vision-body">집에 자연스럽게 스며드는,<br>로봇이 인간과 유대를 맺는 미래를 그립니다.</p>
       </div>
-      <div class="big-card">
-        <div class="big-card-info">
-          <p class="big-card-title">Works for You</p>
-          <p class="big-card-sub">사람의 일을 대신하는 로봇</p>
+    </div>
+
+    <!-- Category banner cards -->
+    <div class="category-banners reveal">
+      <div class="banners-row">
+        <!-- lives-with-you -->
+        <div class="banner-card">
+          <img class="banner-bg" src="assets/images/About/lives-with-you.png" alt="Lives with You">
+          <div class="banner-overlay-top"></div>
+          <div class="banner-text">
+            <p class="banner-title">Lives with You</p>
+            <p class="banner-sub">사람과 함께하는 로봇</p>
+          </div>
+        </div>
+        <!-- works-for-you -->
+        <div class="banner-card offset">
+          <img class="banner-bg" src="assets/images/About/works-for-you.png" alt="Works for You">
+          <div class="banner-overlay-top"></div>
+          <div class="banner-text">
+            <p class="banner-title">Works for You</p>
+            <p class="banner-sub">사람의 일을 대신하는 로봇</p>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Lives with You: Gromi + Galaxy Egg -->
-    <div class="category-cards-section">
-      <div class="category-row reveal">
-        <div class="category-label-row">
-          <div class="category-label">
-            <p class="category-label-title">Lives with<br>You</p>
-            <p class="category-label-sub">사람과 함께하는 로봇</p>
-          </div>
-          <div class="category-product-cards">
-            <a class="product-showcase-card" href="gromi.html">
-              <div class="product-showcase-info">
-                <span class="product-showcase-name">Gromi</span>
-                <span class="product-showcase-desc">아이가 타고 놀며 함께<br>자라는 참여형 AI 컴패니언</span>
-              </div>
-            </a>
-            <a class="product-showcase-card" href="egg.html">
-              <div class="product-showcase-info">
-                <span class="product-showcase-name serif">Galaxy Egg</span>
-                <span class="product-showcase-desc">관찰하고 참여하는 취향 기반<br>갤럭시 워치 컴패니언</span>
-              </div>
-            </a>
-          </div>
-        </div>
+    <div class="products-row lives reveal">
+      <div class="category-label-block">
+        <p class="cat-title">Lives with<br>You</p>
+        <p class="cat-sub">사람과 함께하는 로봇</p>
       </div>
-
-      <!-- Works for You: Weero + FLOW -->
-      <div class="category-row reveal">
-        <div class="category-label-row" style="flex-direction: row-reverse;">
-          <div class="category-label" style="text-align: right;">
-            <p class="category-label-title">Works for<br>You</p>
-            <p class="category-label-sub">사람의 일을 대신하는 로봇</p>
+      <div class="product-cards">
+        <a class="product-card-tall" href="gromi.html">
+          <img class="pc-bg" src="assets/images/About/Gromi-thumbnail.png" alt="Gromi">
+          <div class="pc-overlay"></div>
+          <div class="pc-info">
+            <p class="pc-name">Gromi</p>
+            <p class="pc-desc">아이가 타고 놀며 함께<br>자라는 참여형 AI 컴패니언</p>
           </div>
-          <div class="category-product-cards">
-            <a class="product-showcase-card" href="weero.html">
-              <div class="product-showcase-info">
-                <span class="product-showcase-name">Weero</span>
-                <span class="product-showcase-desc">입체 공간 전체를 케어하는<br>신개념 로봇청소기</span>
-              </div>
-            </a>
-            <a class="product-showcase-card" href="flow.html">
-              <div class="product-showcase-info">
-                <span class="product-showcase-name serif" style="font-size:25px; letter-spacing:-0.26px;">Samsung BESPOKE</span>
-                <span class="product-showcase-name serif" style="font-size:93px; letter-spacing:-0.93px; margin-top:-10px;">FLOW</span>
-                <span class="product-showcase-desc">제로 가사 노동을 위한<br>매립형 생활 자동화 시스템</span>
-              </div>
-            </a>
+        </a>
+        <a class="product-card-tall" href="egg.html">
+          <img class="pc-bg" src="assets/images/About/Egg-thumbnail.png" alt="Galaxy Egg" style="object-position:center center;">
+          <div class="pc-overlay"></div>
+          <div class="pc-info">
+            <p class="pc-name" style="font-size:77px; letter-spacing:-.77px;">Galaxy Egg</p>
+            <p class="pc-desc">관찰하고 참여하는 취향 기반<br>갤럭시 워치 컴패니언</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
+
+    <!-- Works for You: Weero + Flow -->
+    <div class="products-row works reveal">
+      <div class="product-cards">
+        <a class="product-card-tall" href="weero.html">
+          <img class="pc-bg" src="assets/images/About/Weero-thumbnail.png" alt="Weero">
+          <div class="pc-overlay"></div>
+          <div class="pc-info">
+            <p class="pc-name">Weero</p>
+            <p class="pc-desc">입체 공간 전체를 케어하는<br>신개념 로봇청소기</p>
+          </div>
+        </a>
+        <a class="product-card-tall" href="flow.html">
+          <img class="pc-bg" src="assets/images/About/Flow-thumbnail.png" alt="Flow" style="object-position:center bottom;">
+          <div class="pc-overlay"></div>
+          <div class="pc-info">
+            <div class="pc-name flow-name">
+              <span class="pc-name-sm">Samsung BESPOKE</span>
+              <span>FLOW</span>
+            </div>
+            <p class="pc-desc">제로 가사 노동을 위한<br>매립형 생활 자동화 시스템</p>
+          </div>
+        </a>
+      </div>
+      <div class="category-label-block works">
+        <p class="cat-title">Works for<br>You</p>
+        <p class="cat-sub">사람의 일을 대신하는 로봇</p>
+      </div>
+    </div>
+
+    <!-- bottom spacing -->
+    <div style="height:120px;"></div>
+
   </section>
 
   <script>
-    function applyZoom() {
-      document.documentElement.style.zoom = window.innerWidth / 1920;
-    }
+    function applyZoom() { document.documentElement.style.zoom = window.innerWidth / 1920; }
     window.addEventListener('resize', applyZoom);
     applyZoom();
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('in-view');
-        else entry.target.classList.remove('in-view');
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in-view');
+        else e.target.classList.remove('in-view');
       });
     }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
