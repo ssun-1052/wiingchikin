@@ -67,7 +67,7 @@
     .rs-content { height:1000px; width:100%; display:flex; flex-direction:column; justify-content:space-between; align-items:center; }
     .rs-title { padding:96px 592px 0; font-family:var(--font-pretendard); font-weight:600; font-size:60px; line-height:1.4; letter-spacing:-.66px; color:white; text-align:center; white-space:nowrap; flex-shrink:0; }
     .rs-quotes { padding:0 306px 0; display:flex; flex-direction:column; gap:19px; width:100%; }
-    .rs-photo-credit { width:100%; display:flex; justify-content:center; padding:0 110px; font-family:var(--font-pretendard); font-weight:400; font-size:20px; color:white; letter-spacing:-.2px; white-space:nowrap; }
+    .rs-photo-credit { width:100%; padding:0 0 0 110px; font-family:var(--font-pretendard); font-weight:400; font-size:20px; color:white; letter-spacing:-.2px; white-space:nowrap; }
     .quote-row { display:flex; align-items:flex-end; gap:32px; }
     .quote-row.align-right { justify-content:flex-end; }
     .quote-row.offset-right { padding-left:442px; }
@@ -79,9 +79,9 @@
     .quote-bubble.left-tail  { border-radius:30px 30px 30px 4px; }
     .quote-bubble.right-tail { border-radius:30px 30px 4px 30px; }
 
-    /* ── FLOW-VIDEO (white bg, 1.5× scale) ── */
+    /* ── FLOW-VIDEO (white bg, 1.2× scale) ── */
     .flow-video-section { width:1920px; height:1045px; background:white; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-    .flow-video-section video { width:100%; height:100%; object-fit:contain; display:block; transform:scale(1.5); transform-origin:center center; }
+    .flow-video-section video { width:100%; height:100%; object-fit:contain; display:block; transform:scale(1.2); transform-origin:center center; }
 
     /* ── GOAL TEXT ── */
     .goal-section { width:1920px; padding:120px 362px; display:flex; flex-direction:column; align-items:center; gap:65px; text-align:center; }
@@ -164,7 +164,6 @@
   <!-- 위잉치킨_13주차_51: 가사노동 리서치 (bg-1) -->
   <div class="research-section">
     <img class="rs-bg" src="assets/images/Flow_web/bg-1.png" alt="">
-    <div class="rs-overlay"></div>
     <div class="rs-inner">
       <div class="rs-content">
         <p class="rs-title">반복되는 가사 노동,<br>로봇이 들어오기엔 좁은 환경</p>
@@ -191,7 +190,7 @@
           </div>
         </div>
       </div>
-      <div class="rs-photo-credit">팀원 실제 제공 사진</div>
+      <p class="rs-photo-credit">팀원 실제 제공 사진</p>
     </div>
   </div>
 
