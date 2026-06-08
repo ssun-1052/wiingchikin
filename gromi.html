@@ -348,6 +348,7 @@
 
     /* gromi-sc 탭 바 */
     .gromi-sc {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -357,7 +358,20 @@
       padding: 12px 47px 12px 18px;
       flex-shrink: 0;
     }
+    /* 슬라이딩 pill */
+    .tab-pill {
+      position: absolute;
+      top: 12px;
+      background: #1a1c1d;
+      border-radius: 44px;
+      height: calc(100% - 24px);
+      pointer-events: none;
+      transition: left 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                  width 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
     .tab-item {
+      position: relative; /* pill 위치 기준에서 z-index 올리기 위해 */
+      z-index: 1;
       font-family: var(--font-aeonik);
       font-weight: 500;
       font-size: 36px;
@@ -367,14 +381,12 @@
       color: #9fbad0;
       cursor: pointer;
       border-radius: 44px;
-      transition: background 0.2s, color 0.2s;
+      padding: 12px 26px;
       white-space: nowrap;
+      transition: color 0.25s ease;
     }
     .tab-item.active {
-      background: #1a1c1d;
       color: white;
-      padding: 12px 26px;
-      text-align: center;
     }
 
     /* 시나리오 콘텐츠 */
@@ -639,6 +651,7 @@
   <section class="scenario-section">
     <!-- gromi-sc 탭 바 -->
     <div class="gromi-sc reveal">
+      <div class="tab-pill" id="tab-pill"></div>
       <div class="tab-item active" data-tab="0">Grow</div>
       <div class="tab-item" data-tab="1">Play</div>
       <div class="tab-item" data-tab="2">Communication</div>
@@ -723,6 +736,17 @@
       }
     ];
 
+    /* ── 탭 pill 위치 초기화 및 이동 ── */
+    const pill = document.getElementById('tab-pill');
+    const tabBar = document.querySelector('.gromi-sc');
+
+    function movePill(tabEl) {
+      const barRect = tabBar.getBoundingClientRect();
+      const tabRect = tabEl.getBoundingClientRect();
+      pill.style.left  = (tabRect.left - barRect.left) + 'px';
+      pill.style.width = tabRect.width + 'px';
+    }
+
     /* ── 탭 전환 (카드뉴스 슬라이드) ── */
     const tabItems = document.querySelectorAll('.gromi-sc .tab-item');
     const scenarioImg   = document.getElementById('scenario-img');
@@ -772,6 +796,7 @@
           /* 탭 활성화 */
           tabItems.forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
+          movePill(tab);
           currentIdx = idx;
 
           setTimeout(() => {
@@ -812,6 +837,13 @@
     }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* pill 초기 위치 — 첫 번째 탭에 맞춤 */
+    movePill(tabItems[0]);
+    /* zoom 적용 후에도 위치 재계산 */
+    window.addEventListener('resize', () => movePill(
+      document.querySelector('.gromi-sc .tab-item.active')
+    ));
   </script>
 
 </body>
