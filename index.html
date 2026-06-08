@@ -688,12 +688,15 @@
     /* ── 썸네일 드래그 + 관성 스크롤 ── */
     const slider = document.querySelector('.thumbnail-section');
     let isDragging = false;
+    let hasDragged = false;   /* 실제로 이동이 발생했는지 */
+    let clickBlocked = false; /* 드래그 직후 click 이벤트 차단 */
     let startX = 0;
     let scrollStart = 0;
     let velocity = 0;
     let prevX = 0;
     let prevTime = 0;
     let rafId = null;
+    const DRAG_THRESHOLD = 5; /* px — 이 이상 움직여야 드래그로 인식 */
 
     function stopMomentum() {
       cancelAnimationFrame(rafId);
@@ -703,26 +706,32 @@
     function runMomentum() {
       if (Math.abs(velocity) < 0.4) { velocity = 0; return; }
       slider.scrollLeft += velocity;
-      velocity *= 0.93; /* 감속 계수 — 낮을수록 빨리 멈춤 */
+      velocity *= 0.93;
       rafId = requestAnimationFrame(runMomentum);
     }
 
     slider.addEventListener('mousedown', (e) => {
       stopMomentum();
       isDragging = true;
+      hasDragged = false;
       velocity = 0;
       startX = e.clientX;
       scrollStart = slider.scrollLeft;
       prevX = e.clientX;
       prevTime = performance.now();
       slider.style.cursor = 'grabbing';
-      slider.classList.add('is-dragging');
+      /* is-dragging 클래스는 실제 이동 후에 붙임 */
     });
 
     window.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
-      e.preventDefault();
       const dx = e.clientX - startX;
+      if (!hasDragged) {
+        if (Math.abs(dx) < DRAG_THRESHOLD) return; /* 임계값 미만은 무시 */
+        hasDragged = true;
+        slider.classList.add('is-dragging');
+      }
+      e.preventDefault();
       slider.scrollLeft = scrollStart - dx;
 
       const now = performance.now();
@@ -737,8 +746,20 @@
       isDragging = false;
       slider.style.cursor = 'grab';
       slider.classList.remove('is-dragging');
-      rafId = requestAnimationFrame(runMomentum);
+      if (hasDragged) {
+        clickBlocked = true; /* 드래그였으면 바로 이어지는 click 차단 */
+        rafId = requestAnimationFrame(runMomentum);
+      }
+      hasDragged = false;
     });
+
+    /* 드래그 직후 발생하는 click으로 링크 이동 방지 */
+    slider.addEventListener('click', (e) => {
+      if (clickBlocked) {
+        e.preventDefault();
+        clickBlocked = false;
+      }
+    }, true);
 
     /* ── Scroll Reveal (Intersection Observer) ── */
     const REVEAL_OPTIONS = {
