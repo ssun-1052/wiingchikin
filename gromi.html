@@ -132,8 +132,8 @@
     .visual-section video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── DETAIL IMAGE SECTION ── */
-    .detail-image-section { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #d9d9d9; }
-    .detail-image-section img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .detail-image-section { position: relative; width: 1920px; overflow: hidden; }
+    .detail-image-section img { width: 100%; display: block; }
     .detail-image-text { position: absolute; left: 110px; top: 100px; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; }
 
     /* ── FEATURE CARDS SECTION ── */
@@ -251,7 +251,7 @@
   <!-- PRODUCT GOAL -->
   <section class="product-goal-section reveal">
     <h2 class="goal-heading">정서적 친구이자<br>신체적 놀이터가 되어주는 AI 컴패니언</h2>
-    <p class="goal-body">태블릿·화면 기반의 기존 학습 기기와는 다르게, GROMI는 신체 접촉 기반 패시브 센싱 기술을 통해<br>자연스럽게 아이의 성장 데이터를 수집하고 기록합니다. 아이가 처음 보행기를 잡은 날부터<br>GROMI와 함께 공부한 날까지, 모든 순간을 기억하며 함께 성장하는 경험을 제공합니다.</p>
+    <p class="goal-body">태블릿·화면 기반의 기존 학습 기기와는 다르게, GROMI는 신체 접촉 기반 패시브 센싱 기술을 통해 자연스럽게 아이의 성장 데이터를 수집하고 기록합니다.<br>아이가 처음 보행기를 잡은 날부터 GROMI와 함께 공부한 날까지, 모든 순간을 기억하며 함께 성장하는 경험을 제공합니다.</p>
   </section>
 
   <!-- SCENARIO -->
@@ -272,7 +272,7 @@
             <div class="scenario-num" id="scenario-num">1</div>
             <span class="scenario-label-text" id="scenario-label">Grow</span>
           </div>
-          <p class="scenario-desc" id="scenario-desc">아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.</p>
+          <p class="scenario-desc" id="scenario-desc">아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다. 보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.</p>
         </div>
       </div>
     </div>
@@ -342,22 +342,22 @@
       {
         num: '1', label: 'Grow',
         img: 'assets/images/Gromi_web/gromi-scenario-1.jpg',
-        desc: '아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.'
+        desc: '아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다. 보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.'
       },
       {
         num: '2', label: 'Play',
         img: 'assets/images/Gromi_web/gromi-scenario-2.jpg',
-        desc: '오전 10시, 유치원에서 돌아온 준호가 GROMI를 찾아 거실로 달려옵니다. GROMI는 준호의 기분을 감지하고 오늘의 놀이를 제안합니다.<br>공 굴리기, 장애물 피하기, 리듬 따라하기. 아이의 웃음소리가 집 안 가득 퍼지는 동안 GROMI는 준호의 운동 능력과 반응 속도를 자연스럽게 기록합니다.'
+        desc: '오전 10시, 유치원에서 돌아온 준호가 GROMI를 찾아 거실로 달려옵니다. GROMI는 준호의 기분을 감지하고 오늘의 놀이를 제안합니다. 공 굴리기, 장애물 피하기, 리듬 따라하기. 아이의 웃음소리가 집 안 가득 퍼지는 동안 GROMI는 준호의 운동 능력과 반응 속도를 자연스럽게 기록합니다.'
       },
       {
         num: '3', label: 'Communication',
         img: 'assets/images/Gromi_web/gromi-scenario-3.jpg',
-        desc: '저녁 6시, 퇴근 전 부모가 GROMI를 통해 아이와 연결됩니다. 아이는 GROMI의 화면으로 엄마 얼굴을 보며 오늘 있었던 일을 신나게 이야기합니다.<br>GROMI는 대화를 바탕으로 아이의 언어 발달 수준과 정서 상태를 파악하고 부모에게 요약 리포트를 전달합니다.'
+        desc: '저녁 6시, 퇴근 전 부모가 GROMI를 통해 아이와 연결됩니다. 아이는 GROMI의 화면으로 엄마 얼굴을 보며 오늘 있었던 일을 신나게 이야기합니다. GROMI는 대화를 바탕으로 아이의 언어 발달 수준과 정서 상태를 파악하고 부모에게 요약 리포트를 전달합니다.'
       },
       {
         num: '4', label: 'Care',
         img: 'assets/images/Gromi_web/gromi-scenario-4.jpg',
-        desc: '밤 8시, 아이가 잠들기 전 GROMI와 함께 취침 루틴을 시작합니다. GROMI는 오늘의 활동량과 심박수 변화를 바탕으로 수면 준비 상태를 분석하고 차분한 음악과 함께 수면을 유도합니다.<br>부모는 앱을 통해 아이의 일일 건강 리포트를 확인합니다.'
+        desc: '밤 8시, 아이가 잠들기 전 GROMI와 함께 취침 루틴을 시작합니다. GROMI는 오늘의 활동량과 심박수 변화를 바탕으로 수면 준비 상태를 분석하고 차분한 음악과 함께 수면을 유도합니다. 부모는 앱을 통해 아이의 일일 건강 리포트를 확인합니다.'
       }
     ];
 
