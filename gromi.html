@@ -19,12 +19,7 @@
     }
 
     html { overflow-x: hidden; }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --blue: #0081e8;
@@ -37,533 +32,135 @@
       --font-pretendard: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
     }
 
-    body {
-      background: var(--bg-light);
-      font-family: var(--font-pretendard);
-      width: 1920px;
-    }
+    body { background: var(--bg-light); font-family: var(--font-pretendard); width: 1920px; }
 
-    /* ── STICKY HEADER WRAPPER ── */
+    /* ── STICKY HEADER ── */
     .sticky-header {
-      position: sticky;
-      top: -177px;
-      z-index: 100;
-      width: 1920px;
+      position: sticky; top: -177px; z-index: 100; width: 1920px;
       transition: top 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
-
-    /* ── HEADER ── */
-    header {
-      background: white;
-      width: 1920px;
-      height: 177px;
-      display: flex;
-      align-items: center;
-      padding: 0 50px;
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 1820px;
-    }
-
-    /* Nav */
-    nav {
-      display: flex;
-      gap: 50px;
-      align-items: center;
-    }
+    header { background: white; width: 1920px; height: 177px; display: flex; align-items: center; padding: 0 50px; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; width: 1820px; }
+    nav { display: flex; gap: 50px; align-items: center; }
     .nav-item {
-      position: relative;
-      font-family: var(--font-aeonik);
-      font-weight: 500;
-      font-size: 26px;
-      letter-spacing: -0.52px;
-      line-height: 1;
-      color: var(--blue);
-      text-transform: capitalize;
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.2s ease;
+      position: relative; font-family: var(--font-aeonik); font-weight: 500;
+      font-size: 26px; letter-spacing: -0.52px; line-height: 1;
+      color: var(--blue); text-transform: capitalize; text-decoration: none;
+      cursor: pointer; transition: color 0.2s ease;
     }
     .nav-item::after {
-      content: '';
-      position: absolute;
-      left: 0; bottom: -4px;
-      width: 100%; height: 1.5px;
-      background: var(--blue-hover);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.2s ease;
+      content: ''; position: absolute; left: 0; bottom: -4px;
+      width: 100%; height: 1.5px; background: var(--blue-hover);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.2s ease;
     }
     .nav-item:hover { color: var(--blue-hover); }
     .nav-item:hover::after { transform: scaleX(1); }
-    .logo {
-      position: relative;
-      width: 128px;
-      height: 77px;
-      flex-shrink: 0;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .logo-bg-top {
-      position: absolute;
-      top: 0; left: 0;
-      width: 102px; height: 39px;
-      background: var(--blue);
-    }
-    .logo-bg-bottom {
-      position: absolute;
-      top: 38px; left: 0;
-      width: 128px; height: 39px;
-      background: var(--blue);
-    }
-    .logo-text {
-      position: absolute;
-      top: 2.71px; left: 5.42px;
-      font-family: var(--font-aeonik);
-      font-weight: 500;
-      font-size: 35.208px;
-      line-height: 1;
-      letter-spacing: -0.7042px;
-      color: white;
-      text-transform: capitalize;
-      white-space: nowrap;
-    }
-    .header-right {
-      position: relative;
-      width: 196.291px;
-      height: 41px;
-      flex-shrink: 0;
-    }
-    .header-right .union-icon {
-      position: absolute;
-      left: 0; top: 0;
-      width: 38px; height: 41px;
-    }
-    .header-right .x-icon {
-      position: absolute;
-      left: 54.01px; top: 12.22px;
-      width: 17.846px; height: 17.846px;
-    }
-    .header-right .samsung-logo-img {
-      position: absolute;
-      left: 87.64px; top: 12.91px;
-      width: 108.648px; height: 17.15px;
-    }
+    .logo { position: relative; width: 128px; height: 77px; flex-shrink: 0; cursor: pointer; text-decoration: none; }
+    .logo-bg-top { position: absolute; top: 0; left: 0; width: 102px; height: 39px; background: var(--blue); }
+    .logo-bg-bottom { position: absolute; top: 38px; left: 0; width: 128px; height: 39px; background: var(--blue); }
+    .logo-text { position: absolute; top: 2.71px; left: 5.42px; font-family: var(--font-aeonik); font-weight: 500; font-size: 35.208px; line-height: 1; letter-spacing: -0.7042px; color: white; text-transform: capitalize; white-space: nowrap; }
+    .header-right { position: relative; width: 196.291px; height: 41px; flex-shrink: 0; }
+    .header-right .union-icon { position: absolute; left: 0; top: 0; width: 38px; height: 41px; }
+    .header-right .x-icon { position: absolute; left: 54.01px; top: 12.22px; width: 17.846px; height: 17.846px; }
+    .header-right .samsung-logo-img { position: absolute; left: 87.64px; top: 12.91px; width: 108.648px; height: 17.15px; }
 
     /* ── GROMI TITLE BAR ── */
-    .gromi-title-bar {
-      background: #f5f9fc;
-      width: 1920px;
-      height: 104px;
-      display: flex;
-      align-items: center;
-      padding: 26px 57px;
-    }
-    .gromi-title-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-    .gromi-title-text {
-      font-family: var(--font-aeonik);
-      font-weight: 500;
-      font-size: 52.571px;
-      letter-spacing: -1.0514px;
-      line-height: 1;
-      color: #000;
-      text-decoration: none;
-      text-transform: capitalize;
-    }
-    .gromi-buy-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #1d2023;
-      border-radius: 42px;
-      padding: 10px 24px;
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 30px;
-      letter-spacing: -0.6px;
-      line-height: 1;
-      color: white;
-      text-decoration: none;
-      text-transform: capitalize;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
+    .gromi-title-bar { background: #f5f9fc; width: 1920px; height: 104px; display: flex; align-items: center; padding: 26px 57px; }
+    .gromi-title-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .gromi-title-text { font-family: var(--font-aeonik); font-weight: 500; font-size: 52.571px; letter-spacing: -1.0514px; line-height: 1; color: #000; text-decoration: none; text-transform: capitalize; }
+    .gromi-buy-btn { display: flex; align-items: center; justify-content: center; background: #1d2023; border-radius: 42px; padding: 10px 24px; font-family: var(--font-pretendard); font-weight: 500; font-size: 30px; letter-spacing: -0.6px; line-height: 1; color: white; text-decoration: none; white-space: nowrap; cursor: pointer; transition: opacity 0.2s; }
     .gromi-buy-btn:hover { opacity: 0.8; }
 
     /* ── TITLE SECTION ── */
-    .title-section {
-      position: relative;
-      width: 1920px;
-      height: 839px;
-      overflow: hidden;
-    }
-    .title-section img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .title-section { position: relative; width: 1920px; height: 839px; overflow: hidden; background: #797979; }
+    .title-section img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── INTRO SECTION ── */
-    .intro-section {
-      width: 1920px;
-      padding: 120px 550px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 65px;
-      text-align: center;
-    }
-    .intro-heading {
-      font-family: var(--font-pretendard);
-      font-size: 80px;
-      line-height: 1.35;
-      letter-spacing: -1.6px;
-      color: var(--dark);
-      white-space: pre-line;
-    }
-    .intro-heading strong {
-      font-weight: 700;
-    }
-    .intro-heading span {
-      font-weight: 500;
-    }
-    .intro-body {
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 32px;
-      line-height: 1.45;
-      letter-spacing: -0.32px;
-      color: var(--body-text);
-      width: 818px;
-    }
+    .intro-section { width: 1920px; padding: 120px 550px; display: flex; flex-direction: column; align-items: center; gap: 65px; text-align: center; }
+    .intro-heading { font-family: var(--font-pretendard); font-size: 80px; line-height: 1.35; letter-spacing: -1.6px; color: var(--dark); }
+    .intro-heading strong { font-weight: 700; }
+    .intro-heading span { font-weight: 500; }
+    .intro-body { font-family: var(--font-pretendard); font-weight: 500; font-size: 32px; line-height: 1.45; letter-spacing: -0.32px; color: var(--body-text); width: 818px; }
 
-    /* ── BACKGROUND/INSIGHT SECTION ── */
-    .background-section {
-      width: 1920px;
-      padding: 60px 50px;
-      background: var(--bg-light);
-      display: flex;
-      flex-direction: column;
-    }
-    .bg-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 81px;
-      padding: 80px 58px;
-    }
-    .bg-image {
-      width: 926px;
-      height: 611px;
-      background: #d9d9d9;
-      border-radius: 30px;
-      flex-shrink: 0;
-    }
-    .bg-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-self: stretch;
-    }
-    .bg-text-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 49px;
-      width: 697px;
-    }
-    .bg-title {
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 50px;
-      line-height: 1.35;
-      letter-spacing: -1px;
-      color: var(--dark);
-      white-space: pre-line;
-    }
-    .bg-body {
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 28px;
-      line-height: 1.45;
-      letter-spacing: -0.28px;
-      color: var(--body-text);
-    }
-    .bg-source {
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 1.45;
-      letter-spacing: -0.2px;
-      color: var(--body-text);
-    }
+    /* ── BACKGROUND SECTION (staggered photos) ── */
+    .bg-section { width: 1920px; background: white; padding-top: 60px; padding-bottom: 60px; overflow: hidden; }
+    .bg-heading { font-family: var(--font-pretendard); font-weight: 600; font-size: 60px; line-height: 1.35; letter-spacing: -1.2px; color: #000; text-align: center; padding: 0 320px; white-space: nowrap; }
+    .bg-photos-row { display: flex; align-items: flex-end; gap: 20px; padding: 152px 0 0; width: 1920px; }
+    .bg-photo-item { display: flex; flex-direction: column; align-items: center; gap: 12px; flex-shrink: 0; }
+    .bg-photo-item:nth-child(1) { width: 397px; padding-top: 140px; }
+    .bg-photo-item:nth-child(2) { width: 298px; padding-top: 80px; padding-bottom: 60px; }
+    .bg-photo-item:nth-child(3) { width: 452px; padding-bottom: 140px; }
+    .bg-photo-item:nth-child(4) { width: 248px; padding-top: 80px; padding-bottom: 60px; }
+    .bg-photo-item:nth-child(5) { width: 451px; padding-top: 140px; }
+    .bg-photo-img { width: 100%; border-radius: 32px; display: block; object-fit: cover; box-shadow: 0 4px 4px rgba(0,0,0,0.25); }
+    .bg-photo-name { font-family: var(--font-pretendard); font-weight: 500; font-size: 20px; color: rgba(90,93,107,0.8); line-height: 1.4; text-align: center; letter-spacing: -0.22px; }
+    .bg-body-text { font-family: var(--font-pretendard); font-weight: 500; font-size: 32px; line-height: 1.45; letter-spacing: -0.32px; color: var(--body-text); text-align: center; width: 818px; margin: 200px auto 0; }
+    .bg-center-image { width: 592px; height: 598px; border-radius: 32px; overflow: hidden; margin: 80px auto 0; box-shadow: 0 0 65px rgba(0,0,0,0.25); }
+    .bg-center-image img { width: 100%; height: 100%; object-fit: cover; }
+    .bg-second-heading { font-family: var(--font-pretendard); font-weight: 600; font-size: 60px; line-height: 1.35; letter-spacing: -1.2px; color: #000; text-align: center; padding: 80px 320px 60px; white-space: nowrap; }
+
+    /* ── PRODUCT VIDEO SECTION ── */
+    .product-video-section { width: 1920px; height: 1200px; overflow: hidden; position: relative; background: #111; }
+    .product-video-section video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── PRODUCT GOAL SECTION ── */
-    .product-goal-section {
-      width: 1920px;
-      padding: 120px 362px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 65px;
-      text-align: center;
-    }
-    .goal-heading {
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 80px;
-      line-height: 1.35;
-      letter-spacing: -1.6px;
-      color: var(--dark);
-      white-space: pre-line;
-    }
-    .goal-body {
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 32px;
-      line-height: 1.45;
-      letter-spacing: -0.32px;
-      color: var(--body-text);
-    }
+    .product-goal-section { width: 1920px; padding: 120px 362px; display: flex; flex-direction: column; align-items: center; gap: 65px; text-align: center; }
+    .goal-heading { font-family: var(--font-pretendard); font-weight: 500; font-size: 80px; line-height: 1.35; letter-spacing: -1.6px; color: var(--dark); }
+    .goal-body { font-family: var(--font-pretendard); font-weight: 500; font-size: 32px; line-height: 1.45; letter-spacing: -0.32px; color: var(--body-text); }
 
     /* ── SCENARIO SECTION ── */
-    .scenario-section {
-      width: 1920px;
-      padding: 160px 50px;
-      display: flex;
-      flex-direction: column;
-      gap: 65px;
-      align-items: center;
-    }
-
-    /* gromi-sc 탭 바 */
-    .gromi-sc {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: white;
-      border-radius: 71px;
-      width: 775px;
-      padding: 12px 47px 12px 18px;
-      flex-shrink: 0;
-    }
-    .tab-item {
-      font-family: var(--font-aeonik);
-      font-weight: 500;
-      font-size: 36px;
-      letter-spacing: -0.72px;
-      line-height: 1;
-      text-transform: capitalize;
-      color: #9fbad0;
-      cursor: pointer;
-      border-radius: 44px;
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
-    }
-    .tab-item.active {
-      background: #1a1c1d;
-      color: white;
-      padding: 12px 26px;
-      text-align: center;
-    }
-
-    /* 시나리오 콘텐츠 */
-    .scenario-content {
-      display: flex;
-      flex-direction: column;
-      gap: 43px;
-      align-items: flex-end;
-      width: 100%;
-      overflow: hidden; /* 슬라이드 클리핑 */
-    }
-    .scenario-slide {
-      display: flex;
-      flex-direction: column;
-      gap: 43px;
-      width: 1818px;
-      flex-shrink: 0;
-      will-change: transform, opacity;
-    }
-    .scenario-image {
-      position: relative;
-      width: 1818px;
-      height: 1021px;
-      border-radius: 30px;
-      overflow: hidden;
-      background: #d9d9d9;
-    }
-    .scenario-image img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .scenario-footer {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      width: 1818px;
-    }
-    .scenario-label {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .scenario-num {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 58.172px;
-      padding: 5.769px 24.23px;
-      background: #2a2a2a;
-      border-radius: 40.384px;
-      font-family: var(--font-aeonik);
-      font-weight: 500;
-      font-size: 46.153px;
-      letter-spacing: -0.4615px;
-      color: white;
-      line-height: 1;
-      text-align: center;
-    }
-    .scenario-label-text {
-      font-family: var(--font-sharp);
-      font-weight: 700;
-      font-size: 70px;
-      letter-spacing: -0.7px;
-      color: #2a2a2a;
-      line-height: 1;
-      white-space: nowrap;
-    }
-    .scenario-desc {
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 1.4;
-      letter-spacing: -0.24px;
-      color: #6c6c77;
-      width: 1128px;
-    }
-
+    .scenario-section { width: 1920px; padding: 160px 50px; display: flex; flex-direction: column; gap: 65px; align-items: center; }
+    .gromi-sc { display: flex; align-items: center; justify-content: space-between; background: white; border-radius: 71px; width: 775px; padding: 12px 47px 12px 18px; flex-shrink: 0; }
+    .tab-item { font-family: var(--font-aeonik); font-weight: 500; font-size: 36px; letter-spacing: -0.72px; line-height: 1; text-transform: capitalize; color: #9fbad0; cursor: pointer; border-radius: 44px; transition: background 0.2s, color 0.2s; white-space: nowrap; }
+    .tab-item.active { background: #1a1c1d; color: white; padding: 12px 26px; text-align: center; }
+    .scenario-content { display: flex; flex-direction: column; gap: 43px; align-items: flex-end; width: 100%; overflow: hidden; }
+    .scenario-slide { display: flex; flex-direction: column; gap: 43px; width: 1818px; flex-shrink: 0; will-change: transform, opacity; }
+    .scenario-image { position: relative; width: 1818px; height: 1021px; border-radius: 30px; overflow: hidden; background: #d9d9d9; }
+    .scenario-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .scenario-footer { display: flex; align-items: flex-start; justify-content: space-between; width: 1818px; }
+    .scenario-label { display: flex; align-items: center; gap: 16px; }
+    .scenario-num { display: flex; align-items: center; justify-content: center; width: 58.172px; padding: 5.769px 24.23px; background: #2a2a2a; border-radius: 40.384px; font-family: var(--font-aeonik); font-weight: 500; font-size: 46.153px; letter-spacing: -0.4615px; color: white; line-height: 1; text-align: center; }
+    .scenario-label-text { font-family: var(--font-sharp); font-weight: 700; font-size: 70px; letter-spacing: -0.7px; color: #2a2a2a; line-height: 1; white-space: nowrap; }
+    .scenario-desc { font-family: var(--font-pretendard); font-weight: 500; font-size: 24px; line-height: 1.4; letter-spacing: -0.24px; color: #6c6c77; width: 1128px; }
 
     /* ── ERGONOMIC SECTION ── */
-    .ergonomic-section {
-      width: 1920px;
-      padding: 120px 362px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .ergonomic-heading {
-      font-family: var(--font-pretendard);
-      font-weight: 500;
-      font-size: 80px;
-      line-height: 1.35;
-      letter-spacing: -1.6px;
-      color: var(--dark);
-    }
+    .ergonomic-section { width: 1920px; padding: 120px 362px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .ergonomic-heading { font-family: var(--font-pretendard); font-weight: 500; font-size: 80px; line-height: 1.35; letter-spacing: -1.6px; color: var(--dark); }
 
-    /* ── VISUAL SECTION (영상 대체) ── */
-    .visual-section {
-      width: 1920px;
-      height: 1080px;
-      background: #797979;
-      overflow: hidden;
-      position: relative;
-    }
-    .visual-section img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    /* ── VISUAL SECTION (Tunaround video) ── */
+    .visual-section { width: 1920px; height: 1080px; overflow: hidden; position: relative; background: #111; }
+    .visual-section video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* ── MODULE SECTION ── */
-    .module-section {
-      position: relative;
-      width: 1920px;
-      height: 1060px;
-      background: var(--bg-light);
-      overflow: hidden;
-    }
-    .module-title {
-      position: absolute;
-      left: 110px;
-      top: 122px;
-      font-family: var(--font-pretendard);
-      font-weight: 700;
-      font-size: 42px;
-      line-height: 1.35;
-      letter-spacing: -0.462px;
-      color: #1c1e22;
-      white-space: pre-line;
-    }
-    .module-head-img {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 1081px;
-      height: 1060px;
-      object-fit: cover;
-      object-position: center top;
-    }
-    .module-desc {
-      position: absolute;
-      left: 406px;
-      top: 580px;
-      width: 440px;
-    }
-    .module-desc-label {
-      font-family: var(--font-pretendard);
-      font-weight: 700;
-      font-size: 28px;
-      line-height: 1.5;
-      letter-spacing: -0.28px;
-      color: #1c1e22;
-      margin-bottom: 8px;
-    }
-    .module-desc-body {
-      font-family: var(--font-pretendard);
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 1.5;
-      letter-spacing: -0.18px;
-      color: #5a5d6b;
-    }
-    .module-arrow {
-      display: block;
-      margin-top: 28px;
-      width: 385px;
-    }
+    /* ── DETAIL IMAGE SECTION ── */
+    .detail-image-section { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #d9d9d9; }
+    .detail-image-section img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .detail-image-text { position: absolute; left: 110px; top: 100px; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; }
 
-    /* ── Scroll Reveal ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(48px);
-      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .reveal.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* ── FEATURE CARDS SECTION ── */
+    .feature-cards-section { width: 1920px; display: flex; align-items: flex-start; gap: 2px; padding: 100px 110px; }
+    .feature-card-wrap { flex: 1; }
+    .feature-card-wrap.offset { padding-top: 151px; }
+    .feature-card-wrap:first-child { padding-right: 8px; }
+    .feature-card-wrap:last-child { padding-left: 8px; }
+    .feature-card { width: 100%; height: 841px; background: white; border-radius: 30px; overflow: hidden; display: flex; flex-direction: column; }
+    .feature-card-title { padding: 60px 0; text-align: center; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; flex-shrink: 0; white-space: nowrap; }
+    .feature-card-media { flex: 1; overflow: hidden; position: relative; }
+    .feature-card-media video, .feature-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── SCROLL SYNC SECTION ── */
+    .scrollsync-outer { position: relative; width: 1920px; }
+    .scrollsync-sticky { position: sticky; top: 0; width: 1920px; height: 1220px; overflow: hidden; background: #111; }
+    .scrollsync-sticky video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .scrollsync-text { position: absolute; left: 110px; top: 100px; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; z-index: 1; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <!-- STICKY HEADER + GROMI TITLE BAR -->
+  <!-- STICKY HEADER + TITLE BAR -->
   <div class="sticky-header">
     <header>
       <div class="header-inner">
@@ -592,63 +189,82 @@
     </div>
   </div>
 
-  <!-- 타이틀 이미지 -->
+  <!-- TITLE HERO -->
   <div class="title-section">
-    <img src="assets/images/title/gromi-title.png" alt="Gromi">
+    <img src="assets/images/Gromi_web/1. 표지.jpg" alt="Gromi">
   </div>
 
-  <!-- 인트로: 아이와 함께 자라는 단 하나의 동반자 -->
+  <!-- INTRO -->
   <section class="intro-section reveal">
     <h1 class="intro-heading"><span>아이와 함께 자라는 </span><br><strong>단 하나의 동반자</strong></h1>
     <p class="intro-body">GROMI는 아이의 성장에 맞추어 함께 자라는 컴패니언 로봇입니다.<br>놀고, 타고, 배우며 성장하는 아이의 모든 순간을 함께합니다.</p>
   </section>
 
-  <!-- 배경/인사이트 섹션 -->
-  <section class="background-section">
-    <!-- 블록 1: 이미지 왼쪽 -->
-    <div class="bg-row reveal">
-      <div class="bg-image"></div>
-      <div class="bg-text">
-        <div class="bg-text-inner">
-          <p class="bg-title">증가하는 아동들의 스크린 사용량,<br>줄어드는 신체 활동</p>
-          <p class="bg-body">아동의 스크린 사용 시간은 지속적으로 증가하는 반면, 신체활동은 세계 최저 수준에 머물러 발달 저하와 건강 문제가 우려되고 있습니다. 부모들은 스크린을 대체할 신체 기반 놀이와 정서적 교감을 원하지만, 기존 AI 교육 기기는 일방향 상호작용만을 가능하게 하는 한계가 있습니다.</p>
-        </div>
-        <p class="bg-source">출처</p>
+  <!-- BACKGROUND SECTION: staggered childhood photos -->
+  <section class="bg-section reveal">
+    <p class="bg-heading">우리는 수많은 장난감과<br>함께 커왔습니다.</p>
+
+    <div class="bg-photos-row">
+      <div class="bg-photo-item">
+        <img class="bg-photo-img" src="assets/images/Gromi_web/2-4. 백그라운드.jpg" alt="" style="aspect-ratio: 640/480;">
+        <span class="bg-photo-name">팀원 김*현</span>
+      </div>
+      <div class="bg-photo-item">
+        <img class="bg-photo-img" src="assets/images/Gromi_web/2-2. 백그라운드.jpg" alt="" style="aspect-ratio: 1/1;">
+        <span class="bg-photo-name">팀원 윤*빈</span>
+      </div>
+      <div class="bg-photo-item">
+        <img class="bg-photo-img" src="assets/images/Gromi_web/2-5. 백그라운드.jpg" alt="" style="aspect-ratio: 411/271;">
+        <span class="bg-photo-name">팀원 석*현</span>
+      </div>
+      <div class="bg-photo-item">
+        <img class="bg-photo-img" src="assets/images/Gromi_web/2-3. 백그라운드.jpg" alt="" style="aspect-ratio: 122/147;">
+        <span class="bg-photo-name">팀원 윤*빈</span>
+      </div>
+      <div class="bg-photo-item">
+        <img class="bg-photo-img" src="assets/images/Gromi_web/2-6. 백그라운드.jpg" alt="" style="aspect-ratio: 403/266;">
+        <span class="bg-photo-name">팀원 석*현</span>
       </div>
     </div>
-    <!-- 블록 2: 이미지 오른쪽 -->
-    <div class="bg-row reveal">
-      <div class="bg-text">
-        <div class="bg-text-inner">
-          <p class="bg-title">증가하는 아동들의 스크린 사용량,<br>줄어드는 신체 활동</p>
-          <p class="bg-body">아동의 스크린 사용 시간은 지속적으로 증가하는 반면, 신체활동은 세계 최저 수준에 머물러 발달 저하와 건강 문제가 우려되고 있습니다. 부모들은 스크린을 대체할 신체 기반 놀이와 정서적 교감을 원하지만, 기존 AI 교육 기기는 일방향 상호작용만을 가능하게 하는 한계가 있습니다.</p>
-        </div>
-        <p class="bg-source">출처</p>
-      </div>
-      <div class="bg-image"></div>
+
+    <p class="bg-body-text">
+      우리의 어린 시절을 책임졌던 많은 장난감과 보행기, 유모차.<br>
+      하지만 하루가 다르게 자라는 아이의 성장 속도를 따라잡기 힘들어,<br>
+      이러한 용품들은 너무도 쉽게 버려집니다.
+    </p>
+
+    <div class="bg-center-image">
+      <img src="assets/images/Gromi_web/2-1. 백그라운드.jpg" alt="">
     </div>
+
+    <p class="bg-second-heading">아이와 함께 성장하는 장난감이<br>있다면 어떨까요?</p>
   </section>
 
-  <!-- 프로덕트 골 -->
+  <!-- PRODUCT VIDEO -->
+  <div class="product-video-section">
+    <video autoplay muted loop playsinline>
+      <source src="assets/images/Gromi_web/gromi-product-video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- PRODUCT GOAL -->
   <section class="product-goal-section reveal">
     <h2 class="goal-heading">정서적 친구이자<br>신체적 놀이터가 되어주는 AI 컴패니언</h2>
     <p class="goal-body">태블릿·화면 기반의 기존 학습 기기와는 다르게, GROMI는 신체 접촉 기반 패시브 센싱 기술을 통해<br>자연스럽게 아이의 성장 데이터를 수집하고 기록합니다. 아이가 처음 보행기를 잡은 날부터<br>GROMI와 함께 공부한 날까지, 모든 순간을 기억하며 함께 성장하는 경험을 제공합니다.</p>
   </section>
 
-  <!-- 시나리오 섹션 -->
+  <!-- SCENARIO -->
   <section class="scenario-section">
-    <!-- gromi-sc 탭 바 -->
     <div class="gromi-sc reveal">
       <div class="tab-item active" data-tab="0">Grow</div>
       <div class="tab-item" data-tab="1">Play</div>
       <div class="tab-item" data-tab="2">Communication</div>
       <div class="tab-item" data-tab="3">Care</div>
     </div>
-    <!-- 콘텐츠 -->
     <div class="scenario-content reveal">
       <div class="scenario-slide" id="scenario-slide">
         <div class="scenario-image">
-          <img id="scenario-img" src="assets/images/scenario-gromi/scenario-gromi-1.png" alt="Gromi Scenario 1">
+          <img id="scenario-img" src="assets/images/Gromi_web/4-1. 시나리오.jpg" alt="Gromi Scenario 1">
         </div>
         <div class="scenario-footer">
           <div class="scenario-label">
@@ -661,29 +277,54 @@
     </div>
   </section>
 
-  <!-- 인체공학적 디자인 -->
+  <!-- ERGONOMIC -->
   <section class="ergonomic-section reveal">
     <h2 class="ergonomic-heading">아이의 입장을 고려한<br>인체공학적 디자인</h2>
   </section>
 
-  <!-- 비주얼 섹션 (영상 대체) -->
+  <!-- VISUAL: Tunaround video -->
   <div class="visual-section">
-    <img src="assets/images/title/gromi-title.png" alt="Gromi Visual">
+    <video autoplay muted loop playsinline>
+      <source src="assets/images/Gromi_web/3. Tunaround.mp4" type="video/mp4">
+    </video>
   </div>
 
-  <!-- 모듈 섹션 -->
-  <div class="module-section reveal">
-    <p class="module-title">간편하게 조립 가능한<br>모듈 교체 구조</p>
-    <img class="module-head-img"
-         src="assets/images/detail shot/gromi/gromi-module-1.png"
-         alt="Gromi Module">
-    <div class="module-desc">
-      <p class="module-desc-label">테이블탑 전용 하단 모듈 결합 형태</p>
-      <p class="module-desc-body">네 개의 바퀴가 달린 하단 모듈을 결합하여<br>테이블탑 로봇으로 사용할 수 있습니다.</p>
-      <svg class="module-arrow" viewBox="0 0 385 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 42 C80 42 120 6 192 6 C264 6 305 42 383 42" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        <path d="M374 34 L383 42 L374 50" stroke="#1c1e22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
+  <!-- DETAIL IMAGE: gromi-detail-1.png + 모듈 텍스트 -->
+  <div class="detail-image-section reveal">
+    <img src="assets/images/Gromi_web/gromi-detail-1.png" alt="Gromi Module">
+    <p class="detail-image-text">간편하게 조립 가능한<br>모듈 교체 구조</p>
+  </div>
+
+  <!-- FEATURE CARDS: Emotion + Educate -->
+  <div class="feature-cards-section reveal">
+    <div class="feature-card-wrap">
+      <div class="feature-card">
+        <p class="feature-card-title">아이와 교감하는<br>감정 표현</p>
+        <div class="feature-card-media">
+          <video autoplay muted loop playsinline>
+            <source src="assets/images/Gromi_web/5-2. Emotion.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <div class="feature-card-wrap offset">
+      <div class="feature-card">
+        <p class="feature-card-title">재미있는<br>학습 파트너</p>
+        <div class="feature-card-media">
+          <video autoplay muted loop playsinline>
+            <source src="assets/images/Gromi_web/5-3. Educate.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCROLL SYNC VIDEO: gromi-detail-1.mp4 -->
+  <div class="scrollsync-outer" id="scrollsync-outer">
+    <div class="scrollsync-sticky">
+      <video id="scrollsync-video" src="assets/images/Gromi_web/gromi-detail-1.mp4"
+             muted playsinline preload="auto"></video>
+      <p class="scrollsync-text">보행 데이터를 수집하는<br>보행기 모드</p>
     </div>
   </div>
 
@@ -699,26 +340,22 @@
     const scenarios = [
       {
         num: '1', label: 'Grow',
-        img: 'assets/images/scenario-gromi/scenario-gromi-1.png',
-        alt: 'Gromi Scenario 1',
+        img: 'assets/images/Gromi_web/4-1. 시나리오.jpg',
         desc: '아침 7시, 11개월의 막내 민지가 눈을 뜹니다. 아직 걸음이 불안한 민지에게 GROMI는 오늘도 가장 먼저 눈을 맞춥니다.<br>보행기 모드로 민지가 거실을 가로질러 걸어가는 동안, GROMI는 민지의 체중이 실리는 방향, 이동 속도와 보행 자세, 걸음 수를 자연스럽게 기록합니다. 민지는 GROMI의 눈을 보며 웃고, 한 발 한 발 내딛으며 조금씩 성장합니다.'
       },
       {
         num: '2', label: 'Play',
-        img: 'assets/images/scenario-gromi/scenario-gromi-2.png',
-        alt: 'Gromi Scenario 2',
+        img: 'assets/images/Gromi_web/4-2. 시나리오.jpg',
         desc: '오전 10시, 유치원에서 돌아온 준호가 GROMI를 찾아 거실로 달려옵니다. GROMI는 준호의 기분을 감지하고 오늘의 놀이를 제안합니다.<br>공 굴리기, 장애물 피하기, 리듬 따라하기. 아이의 웃음소리가 집 안 가득 퍼지는 동안 GROMI는 준호의 운동 능력과 반응 속도를 자연스럽게 기록합니다.'
       },
       {
         num: '3', label: 'Communication',
-        img: 'assets/images/scenario-gromi/scenario-gromi-3.png',
-        alt: 'Gromi Scenario 3',
+        img: 'assets/images/Gromi_web/4-3. 시나리오.jpg',
         desc: '저녁 6시, 퇴근 전 부모가 GROMI를 통해 아이와 연결됩니다. 아이는 GROMI의 화면으로 엄마 얼굴을 보며 오늘 있었던 일을 신나게 이야기합니다.<br>GROMI는 대화를 바탕으로 아이의 언어 발달 수준과 정서 상태를 파악하고 부모에게 요약 리포트를 전달합니다.'
       },
       {
         num: '4', label: 'Care',
-        img: 'assets/images/scenario-gromi/scenario-gromi-4.png',
-        alt: 'Gromi Scenario 4',
+        img: 'assets/images/Gromi_web/4-4. 시나리오.jpg',
         desc: '밤 8시, 아이가 잠들기 전 GROMI와 함께 취침 루틴을 시작합니다. GROMI는 오늘의 활동량과 심박수 변화를 바탕으로 수면 준비 상태를 분석하고 차분한 음악과 함께 수면을 유도합니다.<br>부모는 앱을 통해 아이의 일일 건강 리포트를 확인합니다.'
       }
     ];
@@ -748,36 +385,27 @@
         if (idx === currentIdx || isAnimating) return;
         isAnimating = true;
 
-        /* 방향: 오른쪽 탭이면 왼쪽으로 나가고 오른쪽에서 들어옴 */
-        const dir = idx > currentIdx ? -1 : 1; // 나가는 방향 오프셋 부호
+        const dir = idx > currentIdx ? -1 : 1;
 
-        /* 1단계: 현재 슬라이드 나가기 */
         setSlideStyle(dir * 80, '0', true);
 
         setTimeout(() => {
-          /* 2단계: 콘텐츠 교체 + 반대편 시작 위치로 순간 이동 */
           const s = scenarios[idx];
-          scenarioImg.src         = s.img;
-          scenarioImg.alt         = s.alt;
-          scenarioNum.textContent = s.num;
+          scenarioImg.src           = s.img;
+          scenarioNum.textContent   = s.num;
           scenarioLabel.textContent = s.label;
-          scenarioDesc.innerHTML  = s.desc;
+          scenarioDesc.innerHTML    = s.desc;
 
-          setSlideStyle(-dir * 80, '0', false); // transition 없이 반대편으로
-          slide.offsetWidth; // reflow → transition 분리
+          setSlideStyle(-dir * 80, '0', false);
+          slide.offsetWidth;
 
-          /* 3단계: 새 슬라이드 들어오기 */
           setSlideStyle(0, '1', true);
 
-          /* 탭 활성화 */
           tabItems.forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
           currentIdx = idx;
 
-          setTimeout(() => {
-            isAnimating = false;
-            slide.style.transition = '';
-          }, 440);
+          setTimeout(() => { isAnimating = false; slide.style.transition = ''; }, 440);
         }, 350);
       });
     });
@@ -785,34 +413,46 @@
     /* ── 헤더 스크롤 숨김/표시 ── */
     const stickyHeader = document.querySelector('.sticky-header');
     let lastScrollY = 0;
-
     window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY < lastScrollY) {
-        /* 위로 스크롤 → 헤더 표시 */
-        stickyHeader.style.top = '0';
-      } else if (currentScrollY > 177) {
-        /* 아래로 스크롤 & 헤더 높이 지난 뒤 → 헤더 숨김 */
-        stickyHeader.style.top = '-177px';
-      }
-
-      lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+      const y = window.scrollY;
+      if (y < lastScrollY) stickyHeader.style.top = '0';
+      else if (y > 177) stickyHeader.style.top = '-177px';
+      lastScrollY = y <= 0 ? 0 : y;
     }, { passive: true });
+
+    /* ── 스크롤 싱크 비디오 ── */
+    const syncVideo = document.getElementById('scrollsync-video');
+    const syncOuter = document.getElementById('scrollsync-outer');
+
+    /* 스크롤 가능한 높이 = 비디오 길이(초) × 300px/s — 원하는 속도에 맞게 조정 */
+    function setSyncHeight() {
+      const duration = syncVideo.duration || 5;
+      syncOuter.style.height = (1220 + duration * 300) + 'px';
+    }
+
+    syncVideo.addEventListener('loadedmetadata', () => {
+      setSyncHeight();
+
+      window.addEventListener('scroll', () => {
+        const rect   = syncOuter.getBoundingClientRect();
+        const scrollable = syncOuter.offsetHeight - 1220;
+        const scrolled   = Math.max(0, -rect.top);
+        const progress   = Math.min(1, scrolled / scrollable);
+        syncVideo.currentTime = progress * syncVideo.duration;
+      }, { passive: true });
+    });
+
+    /* duration 못 읽을 경우 기본 높이 */
+    setSyncHeight();
 
     /* ── Scroll Reveal ── */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        } else {
-          entry.target.classList.remove('in-view');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+        else entry.target.classList.remove('in-view');
       });
     }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
-
 </body>
 </html>
