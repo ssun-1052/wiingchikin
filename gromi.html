@@ -142,16 +142,15 @@
     .feature-card-wrap.offset { padding-top: 151px; }
     .feature-card-wrap:first-child { padding-right: 8px; }
     .feature-card-wrap:last-child { padding-left: 8px; }
-    .feature-card { width: 100%; height: 841px; background: white; border-radius: 30px; overflow: hidden; display: flex; flex-direction: column; }
-    .feature-card-title { padding: 60px 0; text-align: center; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; flex-shrink: 0; white-space: nowrap; }
-    .feature-card-media { flex: 1; overflow: hidden; position: relative; }
-    .feature-card-media video, .feature-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* 카드 전체가 영상 배경 */
+    .feature-card { width: 100%; height: 841px; border-radius: 30px; overflow: hidden; position: relative; background: #111; }
+    .feature-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+    .feature-card-title { position: relative; z-index: 1; padding: 60px 0; text-align: center; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; white-space: nowrap; }
 
-    /* ── SCROLL SYNC SECTION ── */
-    .scrollsync-outer { position: relative; width: 1920px; }
-    .scrollsync-sticky { position: sticky; top: 0; width: 1920px; height: 1220px; overflow: hidden; background: #111; }
-    .scrollsync-sticky video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .scrollsync-text { position: absolute; left: 110px; top: 100px; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; z-index: 1; }
+    /* ── DETAIL END SECTION (gromi-detail-1.png) ── */
+    .detail-end-section { position: relative; width: 1920px; overflow: hidden; }
+    .detail-end-section img { width: 100%; display: block; }
+    .detail-end-text { position: absolute; left: 110px; top: 100px; font-family: var(--font-pretendard); font-weight: 700; font-size: 48px; line-height: 1.35; letter-spacing: -0.528px; color: #1c1e22; }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -301,32 +300,25 @@
     <div class="feature-card-wrap">
       <div class="feature-card">
         <p class="feature-card-title">아이와 교감하는<br>감정 표현</p>
-        <div class="feature-card-media">
-          <video autoplay muted loop playsinline>
-            <source src="assets/images/Gromi_web/gromi-emotion.mp4" type="video/mp4">
-          </video>
-        </div>
+        <video autoplay muted loop playsinline>
+          <source src="assets/images/Gromi_web/gromi-emotion.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
     <div class="feature-card-wrap offset">
       <div class="feature-card">
         <p class="feature-card-title">재미있는<br>학습 파트너</p>
-        <div class="feature-card-media">
-          <video autoplay muted loop playsinline>
-            <source src="assets/images/Gromi_web/gromi-educate.mp4" type="video/mp4">
-          </video>
-        </div>
+        <video autoplay muted loop playsinline>
+          <source src="assets/images/Gromi_web/gromi-educate.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
 
-  <!-- SCROLL SYNC VIDEO: gromi-detail-1.mp4 -->
-  <div class="scrollsync-outer" id="scrollsync-outer">
-    <div class="scrollsync-sticky">
-      <video id="scrollsync-video" src="assets/images/Gromi_web/gromi-detail-1.mp4"
-             muted playsinline preload="auto"></video>
-      <p class="scrollsync-text">보행 데이터를 수집하는<br>보행기 모드</p>
-    </div>
+  <!-- DETAIL END: gromi-detail-1.png -->
+  <div class="detail-end-section reveal">
+    <img src="assets/images/Gromi_web/gromi-detail-1.png" alt="Gromi Walker">
+    <p class="detail-end-text">보행 데이터를 수집하는<br>보행기 모드</p>
   </div>
 
   <script>
@@ -420,31 +412,6 @@
       else if (y > 177) stickyHeader.style.top = '-177px';
       lastScrollY = y <= 0 ? 0 : y;
     }, { passive: true });
-
-    /* ── 스크롤 싱크 비디오 ── */
-    const syncVideo = document.getElementById('scrollsync-video');
-    const syncOuter = document.getElementById('scrollsync-outer');
-
-    /* 스크롤 가능한 높이 = 비디오 길이(초) × 300px/s — 원하는 속도에 맞게 조정 */
-    function setSyncHeight() {
-      const duration = syncVideo.duration || 5;
-      syncOuter.style.height = (1220 + duration * 300) + 'px';
-    }
-
-    syncVideo.addEventListener('loadedmetadata', () => {
-      setSyncHeight();
-
-      window.addEventListener('scroll', () => {
-        const rect   = syncOuter.getBoundingClientRect();
-        const scrollable = syncOuter.offsetHeight - 1220;
-        const scrolled   = Math.max(0, -rect.top);
-        const progress   = Math.min(1, scrolled / scrollable);
-        syncVideo.currentTime = progress * syncVideo.duration;
-      }, { passive: true });
-    });
-
-    /* duration 못 읽을 경우 기본 높이 */
-    setSyncHeight();
 
     /* ── Scroll Reveal ── */
     const observer = new IntersectionObserver((entries) => {
